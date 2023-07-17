@@ -1,0 +1,61 @@
+h1,h2,h3,h4,h5,h6{
+    color: $heading-text-color;
+    font-weight: $fw-5;
+    line-height: $leading-2;
+    font-family: $font-secondary;
+
+    //si es el primer hijo, que no tenga margen hacia arriba
+    &:first-child{ 
+        margin-top: 0;
+    }
+
+    //si es el ultimo hijo, que no tenga margen hacia abajo
+    &:last-child{
+        margin-bottom: 0;
+    }
+
+}
+
+h1{
+    margin:32px, 0;
+    font-size: 48px;
+}
+
+h2 {
+    margin: 32px, 0;
+    font-size: 36px;
+}
+
+h3 {
+    margin: 24px, 0;
+    font-size: 30px;
+}
+
+h4 {
+    margin: 20px, 0;
+    font-size: 24px;
+}
+
+h5 {
+    margin: 18px, 0;
+    font-size: 20px;
+}
+
+h6 {
+    margin: 16px, 0;
+    font-size: 18px;
+}
+
+p{
+    color: $body-text-color;
+    margin: 16px 0;
+    font-weight: $font-weight-base;
+    //si es el primero sin margen top
+    &:first-child{
+        margin-top: 0;
+    }
+    //si es el ultimo sin margen bottom
+    &:last-child{
+        margin-bottom: 0;
+    }
+}

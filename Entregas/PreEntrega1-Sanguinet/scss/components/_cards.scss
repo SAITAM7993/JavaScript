@@ -1,0 +1,58 @@
+$card-bg: var(--#{$prefix}-card-bg, white);
+$card-radius: var(--#{$prefix}-card-radius, 5px);
+$card-border: var(--#{$prefix}-card-border,$color-slate-200 );
+
+.card{
+    border: 1px solid $card-border;
+    overflow: hidden;
+    position: relative;
+    transition: all .3s ease;
+    box-shadow: $shadow-1;
+    border-radius: $card-radius;
+    background-color: $card-bg;
+
+    &:hover{
+        box-shadow:$shadow-4;
+    }
+    &-content{
+        padding:20px 18px;
+    }
+    &-title{
+        margin-bottom: 20px;
+        font-size: $fs-6;
+        font-weight: $fw-5;
+    }
+    &-image{
+        width: 100%;
+        height: auto;
+    }
+    &-text{
+        margin-bottom: 24px;
+    }
+    &-actions{
+        gap: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start; //cambiar a gusto
+    }
+}
+
+.card-container{
+    gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    .card{
+        flex: 0 0 auto;
+        width: 100%;
+
+        @include sm{
+            width: calc(50% - 8px);
+        }
+
+        @include xl{
+            width: calc(25% - 12px);
+        }      
+    }
+}

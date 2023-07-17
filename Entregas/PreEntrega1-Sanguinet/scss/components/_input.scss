@@ -1,0 +1,66 @@
+$input-bg-color: var(--#{$prefix}-input-bg-color,white);
+$input-text-color: var(--#{$prefix}-input-text-color, $body-text-color);
+
+$input-border-color: var(--#{$prefix}-input-border-color, $color-slate-300);
+$input-focus-border-color: var(--#{$prefix}-input-focus-border-color, $color-slate-400);
+$input-invalid-color: var(--#{$prefix}-input-invalid-color, $color-red-400);
+.input-container{
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.input{
+    width: 100%;
+    color: $input-text-color;
+    border: 1px solid $input-border-color;
+    display: block;
+    padding: 10px 18px;
+    outline: 0;
+    font-size: $fs-5;
+    transition: all .2s ease;
+    font-weight: $fw-5;
+    line-height: $leading-4n;
+    padding-right: 24px;
+    border-radius: 4px;
+    background-color: $input-bg-color;
+
+    &::placeholder{
+        color: $input-text-color;
+        opacity: .5;    
+    }
+
+    &:focus{
+        outline:0;
+        border-color:$input-focus-border-color;        
+    }
+
+    &:disabled{
+        opacity: .5;
+        pointer-events:none;
+    }
+
+    //ESTADOS
+    &.input-invalid{
+        border-color: $input-invalid-color;
+        &:focus{
+            border-color: $input-focus-border-color;
+        }
+    }
+
+    &-label{
+        cursor:pointer;
+        display: inline-block;
+        font-size: $fs-5;
+        line-height: $leading-4n;
+        user-select:none;
+        font-weight: $fw-4n;        
+    }
+    &-info {
+        margin: 0;
+        opacity: .75;
+        display: block;
+        font-size: $fs-2;
+        line-height: $leading-4n;
+    }
+
+}
