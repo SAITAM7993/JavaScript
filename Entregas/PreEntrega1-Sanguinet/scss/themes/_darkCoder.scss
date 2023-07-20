@@ -3,12 +3,7 @@
 
 //aqui van los temas, se cambian las variables por los colores y listo
 
-:root[data-theme = default] {
-    color-scheme: light;
-    //fonts
-    --#{$prefix}-font-primary: 'Montserrat';
-    --#{$prefix}-font-secondary: 'DM Sans';
-}
+
 :root[data-theme = darkCoder]{
     color-scheme: dark;
     //fonts

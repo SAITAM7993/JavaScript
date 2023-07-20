@@ -3,25 +3,30 @@
     grid-template-areas: 
     "models car-preview"
     "wheels car-preview"
-    "colors car-preview";
-    grid-template-columns: 2fr 1fr;
+    "colors car-preview"
+    "interior car-preview";
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap:16px;
+    gap: 0px 40px;
     margin: 64px 128px 64px 128px;
 }
 #models{
     grid-area:models;
-    background-color: grey;
+    //background-color: grey;
 }
 #wheels {
     grid-area: wheels;
-    background-color: steelblue;
+    //background-color: steelblue;
 }
 #colors {
     grid-area: colors;
-    background-color: rgb(253, 174, 174);
+   // background-color: rgb(253, 174, 174);
 }
 #car-preview {
     grid-area: car-preview;
-    background-color: rgb(225, 255, 203);
+   // background-color: rgb(225, 255, 203);
+}
+#interior {
+    grid-area: interior;
+   // background-color: rgb(225, 100, 203);
 }
