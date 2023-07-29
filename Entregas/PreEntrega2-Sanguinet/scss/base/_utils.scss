@@ -1,0 +1,37 @@
+//clases contenedoras y utilidades
+.container{
+    width: 100%;
+    display: block;
+    max-width:1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.flex-container{
+    gap:16px;
+    display: flex;
+    align-items:center;
+
+    &.wrap{
+        flex-wrap: wrap;
+    }
+  
+    &-columns{
+        gap: 16px;
+        display: flex;
+        align-items: center;  
+    }
+}
+
+
+.animate-all{ //para cambio de tema, se aplica animacion
+    transition: all .2s ease-in-out;
+    *{
+        transition:all .2s ease-in-out;
+    }
+}
+/**GENERA TODOS LOS MARGINS Y PADDINGS**/
+@include generate-spacing(padding, p);
+@include generate-spacing(padding, m);
