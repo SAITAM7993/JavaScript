@@ -1,310 +1,274 @@
 /*IDEA GENERAL DEL PROY
 Simulador de precios según opciones seleccionadas (modelo, llantas, colores, interiores) de ciertos autos.
-Cada modelo tendría diferentes opciones, seleccionaría cada item y debería actualizar dinámicamente las opciones/ img en la página además de tener un resumen de lo que va costando.
-Tendría que ver como transformar la idea en objetos/ coleccion de objetos para que funcione bien en el pory final.
+Cada modelo tendría diferentes opciones, seleccionaría cada item y debería actualizar dinámicamente las opciones/ img en la página 
+
+flujo para 3era entrega
+- precargar los modelos con las img del array de autos en el HTML
+- Luego precargar los colores e interiores del primer auto por default en el HTML y guardar el AUTO
+- Cuando haga click en otro modelo reemplazar el default (trabajaria con un solo objeto auto)
+- cuando le de click a "consultar precio" hacer un resumen y calcular el total del auto final mostrandolo en el html como una pantalla emergente
+
+notas: por ahora quito los seleccionados, trabajo por ID de opción seleccionada y UN solo objeto a la vez
 */
 
+/**************************************************
+CONSTRUCTORES
+**************************************************/ 
 
-/*CONSTRUCTORES*/
-
-//constructor OBJETO AUTO
-
+//AUTO
 class Auto { 
-    constructor(id, modelo,precio, colores, llantas, interiores) { 
+    constructor(id, modelo,precio, colores, interiores) { 
         this.id = id;
-        this.modelo = modelo;
+        this.nombre = modelo;
         this.precio = precio; 
-        this.colores = colores; //array de colores (nombre, precio, img, seleccionado)
-        this.llantas = llantas;//array de llantas (nombre, precio, img, seleccionado)
-        this.interiores = interiores; //array de interiores (nombre, precio, img, seleccionado)
-        this.seleccionado = false; 
-        //ver si poner img por defecto
-    }
-    seleccionar() {
-        this.seleccionado = true; //para marcar como seleccionado
-    }
+        this.colores = colores; //array de colores (nombre, precio, imgA, imgB, imgC, imgFrente)       
+        this.interiores = interiores; //array de interiores (nombre, precio, img)           
+    } 
         
 }
-
-//Esto aplica para LLANTAS e INTERIORES
+//Esto aplica para COLORES e INTERIORES 
 class Opcion { 
-    constructor(id, nombre, precio, img) { 
+    constructor(id, nombre, precio, imgA, imgB, imgC) { 
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.img = img;       
-        this.seleccionado = false;
+        this.img = imgA; //para colores la img del color para el interior img del interior
+        this.img = imgB; //solo para colores ya que guardo img de frente  
+        this.img = imgC; //solo para colores ya que guardo img perfil
     }
-    seleccionar() {
-    this.seleccionado = true; //para marcar como seleccionado
-  }
-}
+};
 
-//este es especifico para colores porque le voy a dar 3 img segun la llanta
-class Color { 
-    constructor(id, nombre, precio, imgA, imgB, imgC, imgFrente) { 
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.imgA = imgA;   
-        this.imgB = imgB; 
-        this.imgC = imgC;   
-        this.imgFrente = imgFrente;
-        this.seleccionado = false;
-    }
-    seleccionar() {
-    this.seleccionado = true; //para marcar como seleccionado
-  }
-}
-
-/* CONSTRUCTORES FIN*/
+/**************************************************
+CONSTRUCTORES - FIN
+**************************************************/ 
 
 
-//FUNCION GENERICA para que pida dato nuevamente en caso de error hasta que de ok
+/**************************************************
+FUNCIONES
+**************************************************/ 
+
+//Función genérica para que pida dato nuevamente en caso de error hasta que de ok
 function pedirOpc(rangoA, rangoB, categoria) {
-    let opc = parseInt(prompt(`Seleccione ${categoria} [${rangoA} al ${rangoB}]`));
+    let opc = parseInt(prompt(`Seleccione ${categoria} [${rangoA} al ${rangoB-1}]`));
     while (opc < rangoA || opc > rangoB){    
-		 opc = parseInt(prompt(`ERROR: Seleccione ${categoria} [${rangoA} al ${rangoB}]`));	
+		 opc = parseInt(prompt(`ERROR: Seleccione ${categoria} [${rangoA-1} al ${rangoB}]`));	
     } 
 	return opc;
 }
 
-//FUNCIONES especificas para pedir una opcion
+//calcula el total dados 3 objetos que contienen precio
+function calcularTotal(auto, color, interior) {     
+    return auto.precio + color.precio + interior.precio;   
+};
 
-function pedirModelo(){
-	return pedirOpc(1, 4, "MODELO");
-}
-
-function pedirLlantas(){
-	return pedirOpc(1, 3, "LLANTAS");
-}
-
-function pedirColor(){	
-	return pedirOpc(1, 7, "COLOR");
-}
-
-function pedirInterior(){
-	return pedirOpc(1, 4, "INTERIOR");
-}
-
-
-//Pido todos los datos y lo devuelvo en un array
-function pedirTodo() {    
-    return [pedirModelo(), pedirLlantas(), pedirColor(), pedirInterior()]; //retorno una coleccion con las opcioens seleccionadas
-}
-
-
-//FUNCION PARA CALCULAR PRECIOS
-function calcularPrecio(categoria, opc){
-//para simplificar supongo que las llantas, colores, interiores salen lo mismo para cada modelo
-    let precio = 0;
+//creo el mensaje de resumen con los precios de cada opc seleccionada y el total
+function obtenerMensajeResumen(auto, color, interior) {
+    let mensaje = 'Usted seleccionó: \n';
+    mensaje += `Modelo:  ${auto.nombre} - $ ${auto.precio}\n`;
+    mensaje += `Color:  ${color.nombre} - $ ${color.precio}\n`;
+    mensaje += `Interior: ${interior.nombre} - $ ${interior.precio}\n`;
     
-    switch(categoria){
-        case "MODELO":	             
-            switch(opc){
-                case 1:
-                   
-                    precio = 10000;
-                break;
-                case 2:
-                    precio = 15000;
-                break;
-                case 3:
-                    precio = 20000;
-                break;
-                case 4:
-                    precio = 25000;
-                break;
-                case 5:
-                    precio = 30000;
-                break;
-            }
-        break;
-        case "LLANTAS":
-            switch(opc){
-                    case 1:
-                        precio = 0;
-                    break;
-                    case 2:
-                        precio = 1500;
-                    break;
-                    case 3:
-                        precio = 2000;
-                    break;				
-                }
-        break;
-        case "COLORES":
-            switch(opc){
-                    case 1:
-                        precio = 0;
-                    break;
-                    case 2:
-                        precio = 1500;
-                    break;
-                    case 3:
-                        precio = 1500;
-                    break;
-                    case 4:
-                        precio = 2500;
-                    break;
-                    case 5:
-                        precio = 5000;
-                    break;
-                    case 6:
-                        precio = 5000;
-                    break;
-                    case 7:
-                        precio = 10000;
-                    break;
-                }
-            break;
-        case "INTERIOR":
-            switch(opc){
-                    case 1:
-                        precio = 0;
-                    break;
-                    case 2:
-                        precio = 1500;
-                    break;
-                    case 3:
-                        precio = 2000;
-                    break;	
-                    case 4:
-                        precio = 2000;
-                    break;				
-            }
-        break;
-    } 
-    return precio;
+    let total = calcularTotal(auto, color, interior);
+    mensaje += `Total: $ ${total}\n`; 
+    return mensaje;
+};
+
+//genero una lista de items para mostrar antes de que seleccione 
+const generarLista = (arreglo) => {
+    let mensaje = 'Opciones disponibles \n'
+    let info = arreglo.map((item) =>`[${item.id}] ${item.nombre} - $ ${item.precio}`);
+    mensaje += info.join('\n');
+    return mensaje;
 }
 
-/*
-function obtenerPrecios() {
-    return [
-        calcularPrecio("MODELO", opciones[0]),
-        calcularPrecio("LLANTAS", opciones[1]),
-        calcularPrecio("COLORES", opciones[2]),
-        calcularPrecio("INTERIOR", opciones[3])
-    ];
-}
-	
-let opciones = pedirTodo(); //coleccion de opcioens seleccionadas
-let precios = obtenerPrecios();
-let total = precios[0] + precios[1] + precios[2] + precios[3];
-alert(`Usted seleccionó:\n  
-	MODELO: ${opciones[0]} - $ ${precios[0]}\n 
-	LLANTAS: ${opciones[1]} - $ ${precios[1]}\n 
-	COLOR:  ${opciones[2]} - $ ${precios[2]}\n 
-	INTERIOR:  ${opciones[3]} - $ ${precios[3]}\n 
-	TOTAL: $ ${total}`);
+/**************************************************
+FUNCIONES - FIN
+**************************************************/
 
-
-*/
-
-//creo las opciones para cada auto
-
-//LLANTAS
-const llantas_modelo1 = [];
-llantas_modelo1.push(new Opcion(1, "llanta A", 100, "IMG A"));
-llantas_modelo1.push(new Opcion(2, "llanta B", 200, "IMG B"));
-llantas_modelo1.push(new Opcion(3, "llanta C", 300, "IMG C"));
-
-const llantas_modelo2 = [];
-llantas_modelo2.push(new Opcion(1, "llanta A", 100, "IMG A"));
-llantas_modelo2.push(new Opcion(2, "llanta B", 200, "IMG B"));
-llantas_modelo2.push(new Opcion(3, "llanta C", 300, "IMG C"));
-
-const llantas_modelo3 = [];
-llantas_modelo3.push(new Opcion(1, "llanta A", 100, "IMG A"));
-llantas_modelo3.push(new Opcion(2, "llanta B", 200, "IMG B"));
-llantas_modelo3.push(new Opcion(3, "llanta C", 300, "IMG C"));
-
-const llantas_modelo4 = [];
-llantas_modelo4.push(new Opcion(1, "llanta A", 100, "IMG A"));
-llantas_modelo4.push(new Opcion(2, "llanta B", 200, "IMG B"));
-llantas_modelo4.push(new Opcion(3, "llanta C", 300, "IMG C"));
-
+/**************************************************
+CREO LOS AUTOS Y OPCIONES PARA C/U (interiores, colores)
+**************************************************/ 
 //INTERIORES
-const interiores_modelo1 = [];
-interiores_modelo1.push(new Opcion(1, "interior A", 100, "IMG A"));
-interiores_modelo1.push(new Opcion(2, "interior B", 200, "IMG B"));
-interiores_modelo1.push(new Opcion(3, "interior C", 300, "IMG C"));
-interiores_modelo1.push(new Opcion(4, "interior D", 400, "IMG D"));
-
-const interiores_modelo2 = [];
-interiores_modelo2.push(new Opcion(1, "interior A", 100, "IMG A"));
-interiores_modelo2.push(new Opcion(2, "interior B", 200, "IMG B"));
-interiores_modelo2.push(new Opcion(3, "interior C", 300, "IMG C"));
-interiores_modelo2.push(new Opcion(4, "interior D", 400, "IMG D"));
-
-const interiores_modelo3 = [];
-interiores_modelo3.push(new Opcion(1, "interior A", 100, "IMG A"));
-interiores_modelo3.push(new Opcion(2, "interior B", 200, "IMG B"));
-interiores_modelo3.push(new Opcion(3, "interior C", 300, "IMG C"));
-interiores_modelo3.push(new Opcion(4, "interior D", 400, "IMG D"));
-
-const interiores_modelo4 = [];
-interiores_modelo4.push(new Opcion(1, "interior A", 100, "IMG A"));
-interiores_modelo4.push(new Opcion(2, "interior B", 200, "IMG B"));
-interiores_modelo4.push(new Opcion(3, "interior C", 300, "IMG C"));
-interiores_modelo4.push(new Opcion(4, "interior D", 400, "IMG D"));
-
+const interiores_modelo1 = [
+    new Opcion(0, "interior A", 9999, "../media/cars/e_tron_R8/interior/A.webp"),
+    new Opcion(1, "interior B", 2000, "../media/cars/e_tron_R8/interior/B.webp"),
+    new Opcion(2, "interior C", 3000, "../media/cars/e_tron_R8/interior/C.webp"),
+    new Opcion(3, "interior D", 4000, "../media/cars/e_tron_R8/interior/D.webp")
+];
+const interiores_modelo2 = [
+    new Opcion(0, "interior A", 100, "../media/cars/r8/interior/A.webp"),
+    new Opcion(1, "interior B", 200, "../media/cars/r8/interior/B.webp"),
+    new Opcion(2, "interior C", 300, "../media/cars/r8/interior/C.webp"),
+    new Opcion(3, "interior D", 400, "../media/cars/r8/interior/D.webp")
+];
+const interiores_modelo3 = [
+    new Opcion(0, "interior A", 100, "../media/cars/rs3_sedan/interior/A.webp"),
+    new Opcion(1, "interior B", 200, "../media/cars/rs3_sedan//interior/A.webp"),
+    new Opcion(2, "interior C", 300, "../media/cars/rs3_sedan//interior/A.webp"),
+    new Opcion(3, "interior D", 400, "../media/cars/rs3_sedan//interior/A.webp")
+];
+const interiores_modelo4 = [
+    new Opcion(0, "interior A", 100, "../media/cars/s3_sportback_tfsi/interior/A.webp"),
+    new Opcion(1, "interior B", 200, "../media/cars/s3_sportback_tfsi/interior/A.webp"),
+    new Opcion(2, "interior C", 300, "../media/cars/s3_sportback_tfsi/interior/A.webp"),
+    new Opcion(3, "interior D", 400, "../media/cars/s3_sportback_tfsi/interior/A.webp")
+];
 //COLORES
-const colores_modelo1 = [];
-colores_modelo1.push(new Color(1, "blanco"  , 1000  , "IMG 1A", "IMG 1B", "IMG 1C", "IMG 1 Frente"));
-colores_modelo1.push(new Color(2, "gris"    , 2000  , "IMG 2A", "IMG 2B", "IMG 2C", "IMG 2 Frente"));
-colores_modelo1.push(new Color(3, "negro"   , 3000  , "IMG 3A", "IMG 3B", "IMG 3C", "IMG 3 Frente"));
-colores_modelo1.push(new Color(4, "rojo"    , 4000  , "IMG 4A", "IMG 4B", "IMG 4B", "IMG 4 Frente"));
-colores_modelo1.push(new Color(5, "amarillo", 8000  , "IMG 5A", "IMG 5B", "IMG 5C", "IMG 5 Frente"));
-colores_modelo1.push(new Color(6, "verde"   , 10000 , "IMG 6A", "IMG 6B", "IMG 6C", "IMG 6 Frente"));
-colores_modelo1.push(new Color(7, "naranja" , 20000 , "IMG 7A", "IMG 7B", "IMG 7C", "IMG 7 Frente"));
-
-const colores_modelo2 = [];
-colores_modelo2.push(new Color(1, "blanco"  , 1000  , "IMG 1A", "IMG 1B", "IMG 1C", "IMG 1 Frente"));
-colores_modelo2.push(new Color(2, "gris"    , 2000  , "IMG 2A", "IMG 2B", "IMG 2C", "IMG 2 Frente"));
-colores_modelo2.push(new Color(3, "negro"   , 3000  , "IMG 3A", "IMG 3B", "IMG 3C", "IMG 3 Frente"));
-colores_modelo2.push(new Color(4, "rojo"    , 4000  , "IMG 4A", "IMG 4B", "IMG 4B", "IMG 4 Frente"));
-colores_modelo2.push(new Color(5, "amarillo", 8000  , "IMG 5A", "IMG 5B", "IMG 5C", "IMG 5 Frente"));
-colores_modelo2.push(new Color(6, "verde"   , 10000 , "IMG 6A", "IMG 6B", "IMG 6C", "IMG 6 Frente"));
-colores_modelo2.push(new Color(7, "naranja" , 20000 , "IMG 7A", "IMG 7B", "IMG 7C", "IMG 7 Frente"));
-
-
-const colores_modelo3 = [];
-colores_modelo3.push(new Color(1, "blanco"  , 1000  , "IMG 1A", "IMG 1B", "IMG 1C", "IMG 1 Frente"));
-colores_modelo3.push(new Color(2, "gris"    , 2000  , "IMG 2A", "IMG 2B", "IMG 2C", "IMG 2 Frente"));
-colores_modelo3.push(new Color(3, "negro"   , 3000  , "IMG 3A", "IMG 3B", "IMG 3C", "IMG 3 Frente"));
-colores_modelo3.push(new Color(4, "rojo"    , 4000  , "IMG 4A", "IMG 4B", "IMG 4B", "IMG 4 Frente"));
-colores_modelo3.push(new Color(5, "amarillo", 8000  , "IMG 5A", "IMG 5B", "IMG 5C", "IMG 5 Frente"));
-colores_modelo3.push(new Color(6, "verde"   , 10000 , "IMG 6A", "IMG 6B", "IMG 6C", "IMG 6 Frente"));
-colores_modelo3.push(new Color(7, "naranja"  ,20000 , "IMG 7A", "IMG 7B", "IMG 7C", "IMG 7 Frente"));
-
-const colores_modelo4 = [];
-colores_modelo4.push(new Color(1, "blanco"  , 1000  , "IMG 1A", "IMG 1B", "IMG 1C", "IMG 1 Frente"));
-colores_modelo4.push(new Color(2, "gris"    , 2000  , "IMG 2A", "IMG 2B", "IMG 2C", "IMG 2 Frente"));
-colores_modelo4.push(new Color(3, "negro"   , 3000  , "IMG 3A", "IMG 3B", "IMG 3C", "IMG 3 Frente"));
-colores_modelo4.push(new Color(4, "rojo"    , 4000  , "IMG 4A", "IMG 4B", "IMG 4B", "IMG 4 Frente"));
-colores_modelo4.push(new Color(5, "amarillo", 8000  , "IMG 5A", "IMG 5B", "IMG 5C", "IMG 5 Frente"));
-colores_modelo4.push(new Color(6, "verde"   , 10000 , "IMG 6A", "IMG 6B", "IMG 6C", "IMG 6 Frente"));
-colores_modelo4.push(new Color(7, "naranja" , 20000 , "IMG 7A", "IMG 7B", "IMG 7C", "IMG 7 Frente"));
-
-
+const colores_modelo1 = [
+    new Opcion(0, "blanco", 9999,
+        "../media/cars/e_tron_R8/colores/1.webp",
+        "../media/cars/e_tron_R8/perfil/1.webp.webp",
+        "../media/cars/e_tron_R8/frente/1.webp.webp"),    
+    new Opcion(1, "gris", 2000,     
+        "../media/cars/e_tron_R8/colores/2.webp",
+        "../media/cars/e_tron_R8/perfil/2.webp.webp",
+        "../media/cars/e_tron_R8/frente/2.webp.webp"),    
+    new Opcion(2, "negro", 3000,
+        "../media/cars/e_tron_R8/colores/3.webp",
+        "../media/cars/e_tron_R8/perfil/3.webp.webp",
+        "../media/cars/e_tron_R8/frente/3.webp.webp"),    
+    new Opcion(3, "rojo", 4000,
+        "../media/cars/e_tron_R8/colores/4.webp",
+        "../media/cars/e_tron_R8/perfil/4.webp.webp",
+        "../media/cars/e_tron_R8/frente/4.webp.webp"),    
+    new Opcion(4, "amarillo", 8000,
+        "../media/cars/e_tron_R8/colores/5.webp",
+        "../media/cars/e_tron_R8/perfil/5.webp.webp",
+        "../media/cars/e_tron_R8/frente/5.webp.webp"),    
+    new Opcion(5, "verde", 10000,
+        "../media/cars/e_tron_R8/colores/6.webp",
+        "../media/cars/e_tron_R8/perfil/6.webp.webp",
+        "../media/cars/e_tron_R8/frente/6.webp.webp"),    
+    new Opcion(6, "naranja", 20000,
+        "../media/cars/e_tron_R8/colores/7.webp",
+        "../media/cars/e_tron_R8/perfil/7.webp.webp",
+        "../media/cars/e_tron_R8/frente/7.webp.webp"),
+];
+const colores_modelo2 = [
+    new Opcion(0, "blanco", 9999,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(1, "gris", 2000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(2, "negro", 3000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(3, "rojo", 4000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(4, "amarillo", 8000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(5, "verde", 10000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp"),
+    new Opcion(6, "naranja", 20000,
+        "../media/cars/r8/colores/7.webp",
+        "../media/cars/r8/perfil/7.webp.webp",
+        "../media/cars/r8/frente/7.webp.webp")
+];
+const colores_modelo3 = [
+    new Opcion(0, "blanco", 1000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(1, "gris", 2000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(2, "negro", 3000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(3, "rojo", 4000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(4, "amarillo", 8000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(5, "verde", 10000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp"),
+    new Opcion(6, "naranja", 20000,
+        "../media/cars/rs3_sedan/colores/7.webp",
+        "../media/cars/rs3_sedan/perfil/7.webp.webp",
+        "../media/cars/rs3_sedan/frente/7.webp.webp")
+];
+const colores_modelo4 = [
+    new Opcion(0, "blanco", 1000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(1, "gris", 2000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(2, "negro", 3000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(3, "rojo", 4000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(4, "amarillo", 8000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(5, "verde", 10000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp"),
+    new Opcion(6, "naranja", 20000,
+        "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "../media/cars/s3_sportback_tfsi/perfil/7.webp.webp",
+        "../media/cars/s3_sportback_tfsi/frente/7.webp.webp")
+];
 //AUTOS (array de autos en donde inserto cada modelo)
-const autos = [];
-autos.push(new Auto(1, "modelo 1", 10000, colores_modelo1, llantas_modelo1, interiores_modelo1));
-autos.push(new Auto(2, "modelo 2", 15000, colores_modelo2, llantas_modelo2, interiores_modelo2));
-autos.push(new Auto(3, "modelo 3", 20000, colores_modelo3, llantas_modelo3, interiores_modelo3));
-autos.push(new Auto(4, "modelo 4", 25000, colores_modelo4, llantas_modelo4, interiores_modelo4));
+const autos = [
+    new Auto(0, "modelo 1", 10000, colores_modelo1, interiores_modelo1),
+    new Auto(1, "modelo 2", 15000, colores_modelo2, interiores_modelo2),
+    new Auto(2, "modelo 3", 20000, colores_modelo3, interiores_modelo3),
+    new Auto(3, "modelo 4", 25000, colores_modelo4, interiores_modelo4)
+];
 
-//console.log(autos[3]);
-//console.log(autos[1].colores[1].imgA);
-console.log("AUTO: " +autos[1].seleccionado);
-autos[1].seleccionar();
-console.log("AUTO: " +autos[1].seleccionado);
+/**************************************************
+CREO LOS AUTOS Y OPCIONES PARA C/U (interiores, colores) - FIN
+**************************************************/
 
-console.log("COLOR: " + autos[1].colores[2].seleccionado);
-autos[1].colores[2].seleccionar();
-console.log("COLOR: " + autos[1].colores[2].seleccionado);
+/**************************************************
+INTERACCIÓN
+**************************************************/
+
+//pido opciones 
+let opciones = [];
+alert("MODELOS"+"\n"+generarLista(autos)); //muestro lista de autos
+opciones.push(pedirOpc(0, autos.length, "MODELO")); //inserto modelo seleccionado al arreglo de opciones - lo hago con push para utilizarlo 
+//obtengo seleccionados uso find porque siempre va a ser uno (y utilizar funciones de alto orden)
+let autoSeleccionado = autos.find((item) => item.id === opciones[0]); //me quedo con el auto seleccionado
+
+alert("COLORES"+"\n"+generarLista(autoSeleccionado.colores));
+opciones.push(pedirOpc(0, autoSeleccionado.colores.length, "COLOR"));
+let colorSeleccionado = autoSeleccionado.colores.find((item) => item.id === opciones[1]); //me quedo con el color seleccionado
+
+alert("INTERIORES"+"\n"+generarLista(autoSeleccionado.interiores));
+opciones.push(pedirOpc(0, autoSeleccionado.interiores.length, "INTERIOR"));
+let interiorSeleccionado    = autoSeleccionado.interiores.find((item) => item.id === opciones[2]); //me quedo con el interior seleccionado
 
 
-console.log(autos[1]);
-console.log(autos[1].colores);
+//muestro el resumen de lo seleccionado
+alert(obtenerMensajeResumen(autoSeleccionado, colorSeleccionado, interiorSeleccionado));
+
+/**************************************************
+INTERACCIÓN - FIN
+**************************************************/

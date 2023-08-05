@@ -1,68 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="default">
+<html lang="en" data-theme="audix">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./media/icons/logo.webp" type="image/x-icon">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Document</title>
+    <title>Cotizador Audix</title>
 </head>
 
 <body class="base-layout">
     <header class="base-header">
-        <nav class="navbar container">
-            <div class="navbar-items">
-                <a class="link">Home</a>
-                <a class="link">Home</a>
-                <a class="link">Home</a>
-                <a class="link">Home</a>
+        <nav class="navbar container">         
+            <div class="navbar-items">               
+                <a class="link" href="#main">Inicio</a>
+                <a class="link" href="#simulador">Simulador</a>               
             </div>
         </nav>
     </header>
     <main class="base-content">
         <section class="hero-section" id="main">
             <div class="container">
-                <h1 class="hero-title">AUTO AUTO</h1>
+                <h1 class="hero-title">AUDIX</h1>
             </div>
         </section>
         <div class="container">
-            <div class="grid-container">
+            <div class="grid-container" id ="simulador">                  
                 <section id="models">
-                    <h3>Modelos</h3>
+                    <h3>Modelo</h3>
                     <div class="hiddenradio flex-container-columns">
                         <label>
                             <input type="radio" name="model" value="1">
-                            <img class="image-l" src="./media/cars/r8/A/1.webp">
+                            <img class="image-l" src="./media/cars/r8/perfil/1.webp">
                         </label>
                         <label>
                             <input type="radio" name="model" value="small" checked>
-                            <img class="image-l" src="./media/cars/e-tron-R8/A/1.webp">
+                            <img class="image-l" src="./media/cars/e_tron_R8/perfil/1.webp">
                         </label>
                         <label>
                             <input type="radio" name="model" value="2">
-                            <img class="image-l" src="./media/cars/rs3_sedan/A/1.webp">
+                            <img class="image-l" src="./media/cars/rs3_sedan/perfil/1.webp">
                         </label>
                         <label>
                             <input type="radio" name="model" value="3">
-                            <img class="image-l" src="./media/cars/s3_sportback_tfsi/A/1.webp">
+                            <img class="image-l" src="./media/cars/s3_sportback_tfsi/perfil/1.webp">
                         </label>
                     </div>
                 </section>
-                <section id="wheels">
-                    <h3>Llantas</h3>
+                <section id="interior">
+                    <h3>Interior</h3>
                     <div class="hiddenradio flex-container-columns">
                         <label>
-                            <input type="radio" name="wheels" value="A" checked>
-                            <img class="image-m" src="./media/cars/r8/llantas/A.webp">
+                            <input type="radio" name="interior" value="A" checked>
+                            <img class="image-m" src="./media/cars/r8/interior/A.webp">
                         </label>
                         <label>
-                            <input type="radio" name="wheels" value="B">
-                            <img class="image-m" src="./media/cars/r8/llantas/B.webp">
+                            <input type="radio" name="interior" value="B">
+                            <img class="image-m" src="./media/cars/r8/interior/B.webp">
                         </label>
                         <label>
-                            <input type="radio" name="wheels" value="C">
-                            <img class="image-m" src="./media/cars/r8/llantas/C.webp">
+                            <input type="radio" name="interior" value="C">
+                            <img class="image-m" src="./media/cars/r8/interior/C.webp">
+                        </label>
+                        <label>
+                            <input type="radio" name="interior" value="D">
+                            <img class="image-m" src="./media/cars/r8/interior/D.webp">
                         </label>
                     </div>
                 </section>
@@ -98,39 +101,23 @@
                             <img class="image-s" src="./media/cars/r8/colores/7.webp">
                         </label>
                     </div>
-                </section>
-                <section id="interior">
-                    <h3>Interior</h3>
-                    <div class="hiddenradio flex-container-columns">
-                        <label>
-                            <input type="radio" name="interior" value="A" checked>
-                            <img class="image-m" src="./media/cars/r8/interior/A.webp">
-                        </label>
-                        <label>
-                            <input type="radio" name="interior" value="B">
-                            <img class="image-m" src="./media/cars/r8/interior/B.webp">
-                        </label>
-                        <label>
-                            <input type="radio" name="interior" value="C">
-                            <img class="image-m" src="./media/cars/r8/interior/C.webp">
-                        </label>
-                        <label>
-                            <input type="radio" name="interior" value="D">
-                            <img class="image-m" src="./media/cars/r8/interior/D.webp">
-                        </label>
-                    </div>
-                </section>
-                <section id="car-preview">
-                    <img class="image-xl" src="./media/cars/r8/A/1.webp" alt="">
+                </section>              
+                <section id="car-preview" class = "flex-container wrap">
+                    <img class="image-xl" src="./media/cars/r8/perfil/1.webp" alt="">
                     <img class="image-xl" src="./media/cars/r8/frente/1.webp" alt="">
-                </section>
-
+                </section>    
+                <section id="actions">
+                    <div class="flex-container">
+                        <button class="btn btn-outline btn-flex  btn-secondary ">Restablecer</button>
+                        <button class="btn btn-outline btn-flex btn-primary">Consultar precio</button>
+                    </div>
+                </section>              
             </div>
+            
         </div>
-
-
+                    
     </main>
-    <footer class="base-footer">prueba footer, probando</footer>
+    <footer class="base-footer">Simulador de autos Audix</footer>
     <script src="./javaScript/main.js"></script>
 </body>
 

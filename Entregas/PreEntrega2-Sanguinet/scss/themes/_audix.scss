@@ -4,38 +4,38 @@
 //aqui van los temas, se cambian las variables por los colores y listo
 
 
-:root[data-theme=whiteRed] {
+:root[data-theme=audix] {
     color-scheme: dark;
     //fonts
     --#{$prefix}-font-primary: 'Montserrat';
     --#{$prefix}-font-secondary: 'DM Sans';
 
     //body
-    --#{$prefix}-body-bg-color: #f3f3f2;
-    --#{$prefix}-body-text-color: #4e4e4e;
-    --#{$prefix}-heading-text-color: #000000;
+    --#{$prefix}-body-bg-color: #1f2023;
+    --#{$prefix}-body-text-color: #bebebe;
+    --#{$prefix}-heading-text-color: #FFFFFF;
 
     //header
-    --#{$prefix}-header-bg-color: #ffffff;
-    --#{$prefix}-header-border-color: #dbdbdb;
+    --#{$prefix}-header-bg-color: #2e2f36;
+    --#{$prefix}-header-border-color: #393b43;
 
     //footer
-    --#{$prefix}-footer-bg-color: #433939;
+    --#{$prefix}-footer-bg-color: #393b43;
 
     //hero (banner)
     --#{$prefix}-hero-text-color: #ffffff;
     --#{$prefix}-hero-gradient-start: #000000;
-    --#{$prefix}-hero-gradient-end: #870000;
+    --#{$prefix}-hero-gradient-end: #000000;
 
     //colores primarios 
-    --#{$prefix}-color-primary: #a10000;
-    --#{$prefix}-color-primary-hover: #f30000;
-    --#{$prefix}-color-primary-contrast: #eb0000;
+    --#{$prefix}-color-primary: #eaff6a;
+    --#{$prefix}-color-primary-hover: #d4e761;
+    --#{$prefix}-color-primary-contrast: #1f2023;
 
     //colores secundarios
-    --#{$prefix}-color-secondary: #433939;
-    --#{$prefix}-color-secondary-hover: #322b2b;
-    --#{$prefix}-color-secondary-contrast: #e76161;
+    --#{$prefix}-color-secondary: #393b43;
+    --#{$prefix}-color-secondary-hover: #2b2c32;
+    --#{$prefix}-color-secondary-contrast: #d4e761;
 
     //cards
     --#{$prefix}-card-bg: #2a2b32;

@@ -817,19 +817,16 @@ p:last-child {
 
 .grid-container {
   display: grid;
-  grid-template-areas: "models car-preview" "wheels car-preview" "colors car-preview" "interior car-preview";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 40px;
-  margin: 64px 128px 64px 128px;
+  grid-template-areas: "car-preview models" "car-preview interior" "car-preview colors" "car-preview actions";
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 60px;
+  padding: 128px 0px 128px 0px;
+  margin: 0px 128px 0px 128px;
 }
 
 #models {
   grid-area: models;
-}
-
-#wheels {
-  grid-area: wheels;
 }
 
 #colors {
@@ -844,16 +841,24 @@ p:last-child {
   grid-area: interior;
 }
 
+#actions {
+  grid-area: actions;
+}
+
+#data {
+  grid-area: data;
+}
+
 .image {
   width: 100%;
   height: 100%;
 }
 .image-xl {
-  width: 500px;
+  width: 600px;
   height: auto;
 }
 .image-l {
-  width: 140px;
+  width: 300px;
   height: auto;
 }
 .image-m {
@@ -865,7 +870,7 @@ p:last-child {
   height: auto;
 }
 
-:root[data-theme=darkCoder] {
+:root[data-theme=audix] {
   color-scheme: dark;
   --def-font-primary: "Montserrat";
   --def-font-secondary: "DM Sans";
@@ -910,25 +915,25 @@ p:last-child {
   --def-font-secondary: "DM Sans";
 }
 
-:root[data-theme=whiteRed] {
+:root[data-theme=audix] {
   color-scheme: dark;
   --def-font-primary: "Montserrat";
   --def-font-secondary: "DM Sans";
-  --def-body-bg-color: #f3f3f2;
-  --def-body-text-color: #4e4e4e;
-  --def-heading-text-color: #000000;
-  --def-header-bg-color: #ffffff;
-  --def-header-border-color: #dbdbdb;
-  --def-footer-bg-color: #433939;
+  --def-body-bg-color: #1f2023;
+  --def-body-text-color: #bebebe;
+  --def-heading-text-color: #FFFFFF;
+  --def-header-bg-color: #2e2f36;
+  --def-header-border-color: #393b43;
+  --def-footer-bg-color: #393b43;
   --def-hero-text-color: #ffffff;
   --def-hero-gradient-start: #000000;
-  --def-hero-gradient-end: #870000;
-  --def-color-primary: #a10000;
-  --def-color-primary-hover: #f30000;
-  --def-color-primary-contrast: #eb0000;
-  --def-color-secondary: #433939;
-  --def-color-secondary-hover: #322b2b;
-  --def-color-secondary-contrast: #e76161;
+  --def-hero-gradient-end: #000000;
+  --def-color-primary: #eaff6a;
+  --def-color-primary-hover: #d4e761;
+  --def-color-primary-contrast: #1f2023;
+  --def-color-secondary: #393b43;
+  --def-color-secondary-hover: #2b2c32;
+  --def-color-secondary-contrast: #d4e761;
   --def-card-bg: #2a2b32;
   --def-card-border: #393b43;
   --def-card-bg: #2a2b32;
