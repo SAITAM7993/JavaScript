@@ -818,11 +818,9 @@ p:last-child {
 .grid-container {
   display: grid;
   grid-template-areas: "car-preview models" "car-preview interior" "car-preview colors" "car-preview actions";
-  grid-template-columns: 1.4fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 0px 60px;
-  padding: 128px 0px 128px 0px;
-  margin: 0px 128px 0px 128px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px 10px;
+  padding: 128px 64px 128px 64px;
 }
 
 #models {
@@ -845,11 +843,13 @@ p:last-child {
   grid-area: actions;
 }
 
-#data {
-  grid-area: data;
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-areas: "models" "interior" "colors" "car-preview" "actions";
+  }
 }
-
 .image {
+  transition: all 0.3s;
   width: 100%;
   height: 100%;
 }
@@ -868,6 +868,9 @@ p:last-child {
 .image-s {
   width: 45px;
   height: auto;
+}
+.image:hover {
+  transform: scale(1.2);
 }
 
 :root[data-theme=audix] {
@@ -928,24 +931,24 @@ p:last-child {
   --def-hero-text-color: #ffffff;
   --def-hero-gradient-start: #000000;
   --def-hero-gradient-end: #000000;
-  --def-color-primary: #eaff6a;
-  --def-color-primary-hover: #d4e761;
+  --def-color-primary: #83b3ff;
+  --def-color-primary-hover: #83b3ff;
   --def-color-primary-contrast: #1f2023;
   --def-color-secondary: #393b43;
   --def-color-secondary-hover: #2b2c32;
-  --def-color-secondary-contrast: #d4e761;
+  --def-color-secondary-contrast: #83b3ff;
   --def-card-bg: #2a2b32;
   --def-card-border: #393b43;
   --def-card-bg: #2a2b32;
   --def-card-border: #393b43;
   --def-input-bg-color: #27282D;
   --def-input-border-color: #393b43;
-  --def-input-focus-border-color: #eaff6a;
+  --def-input-focus-border-color: #83b3ff;
   --def-input-invalid-color: #ff896f;
   --def-select-bg-color: #2e2f36;
   --def-select-hover-color: #393b43;
   --def-select-border-color: transparent;
-  --def-select-focus-color: #eaff6a;
+  --def-select-focus-color: #83b3ff;
   --def-chevron: url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(234, 255, 106)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
   --def-accordion-title-color: #FFFFFF;
   --def-accordion-title-bg: #2a2b32;
@@ -1124,7 +1127,7 @@ p:last-child {
   position: relative;
   transition: all 0.3s ease;
   box-shadow: 0 1px 2px 0 rgb(var(--prefix-shadow-color, 51 65 85)/0.05);
-  border-radius: var(--def-card-radius, 5px);
+  border-radius: var(--def-card-radius, 10px);
   background-color: var(--def-card-bg, white);
 }
 .card:hover {
@@ -1160,8 +1163,12 @@ p:last-child {
   align-items: flex-start;
 }
 .card-container .card {
+  transition: all 0.5s;
   flex: 0 0 auto;
   width: 100%;
+}
+.card-container .card:hover {
+  transform: translateY(-3%);
 }
 @media (min-width: 576px) {
   .card-container .card {
@@ -1322,7 +1329,7 @@ p:last-child {
 
 /* CHECKED STYLES */
 .hiddenradio [type=radio]:checked + img {
-  outline: 2px solid var(--def-color-primary-hover, #60a5fa);
+  outline: 2.2px solid var(--def-color-primary-hover, #60a5fa);
 }
 
 .base-layout {
@@ -1362,7 +1369,7 @@ p:last-child {
 }
 .hero-section .hero-title {
   color: var(--def-hero-text-color, #f1f5f9);
-  margin: 0 auto;
+  margin: 0px auto;
   max-width: 540px;
   text-align: center;
   line-height: 1.25;

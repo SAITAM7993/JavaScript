@@ -1,9 +1,9 @@
 $card-bg: var(--#{$prefix}-card-bg, white);
-$card-radius: var(--#{$prefix}-card-radius, 5px);
+$card-radius: var(--#{$prefix}-card-radius, 10px);
 $card-border: var(--#{$prefix}-card-border,$color-slate-200 );
 
 .card{
-    border: 1px solid $card-border;
+    border: 1px solid $card-border;   
     overflow: hidden;
     position: relative;
     transition: all .3s ease;
@@ -44,8 +44,13 @@ $card-border: var(--#{$prefix}-card-border,$color-slate-200 );
     flex-wrap: wrap;
     align-items: flex-start;
     .card{
+        transition: all 0.5s;
         flex: 0 0 auto;
         width: 100%;
+
+        &:hover{       
+            transform: translateY(-3%);           
+        }
 
         @include sm{
             width: calc(50% - 8px);

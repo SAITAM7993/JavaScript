@@ -26,7 +26,7 @@ $hero-gradient-end:     var(--#{$prefix}-hero-gradient-end   , $color-slate-900)
         position: fixed; /*siemrpe va a estar arriba*/
         box-shadow: 0 0 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
         border-bottom: 1px solid $header-border-color;
-        background-color: $header-bg-color;
+        background-color: $header-bg-color;        
     }
 
     &-content{
@@ -53,7 +53,7 @@ $hero-gradient-end:     var(--#{$prefix}-hero-gradient-end   , $color-slate-900)
     background-image: linear-gradient(to right, $hero-gradient-start, $hero-gradient-end);
     .hero-title{
         color: $hero-text-color;
-        margin:0 auto;
+        margin:0px auto;        
         max-width: 540px;
         text-align: center;
         line-height: $leading-2;

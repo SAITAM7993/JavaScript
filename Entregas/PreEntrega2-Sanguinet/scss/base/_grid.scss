@@ -1,16 +1,18 @@
 .grid-container{
     display: grid;
-    grid-template-areas:   
+    grid-template-areas:       
     "car-preview models"
     "car-preview interior"
     "car-preview colors"  
     "car-preview actions";
-    grid-template-columns: 1.4fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 0px 60px; 
-    padding: 128px 0px 128px 0px;  
-    margin: 0px 128px 0px 128px;
+    grid-template-columns: 1.2fr 0.8fr;   
+    gap: 10px 10px; 
+    padding: 128px 64px 128px 64px;  
+
+  
+ 
 }
+
 #models{
     grid-area:models;
     //background-color: grey;
@@ -32,7 +34,14 @@
     grid-area: actions;
     //background-color: rgb(225, 100, 203);
 }
-#data {
-    grid-area: data;
-    //background-color: grey;
+
+@media (max-width:992px) {
+    .grid-container {
+        grid-template-areas:
+            "models"
+            "interior"
+            "colors"
+            "car-preview"
+            "actions";
+    }       
 }
