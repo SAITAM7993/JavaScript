@@ -1,0 +1,31 @@
+.navbar{
+    gap:16px;
+    height: 64px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    //logo de marca
+    &-brand{
+        height: 32px;
+        display: none; //por defecto no muestro logo
+        &#logo-dark{
+            @include theme(darkCoder){
+                display:block;
+            }
+        }
+        &#logo-light{
+            @include theme(default) {
+             display: block;
+             }
+        }
+
+    }
+    //items del navbar
+    &-items{
+        gap:16px;
+        display: flex;
+        
+    }
+}

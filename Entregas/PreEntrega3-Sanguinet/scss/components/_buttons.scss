@@ -1,0 +1,104 @@
+$btn-radius: var(--#{$prefix}-btn-radius, 8px);
+
+.btn{
+    --#{$prefix}-btn-bg: #{$color-slate-300};
+    --#{$prefix}-btn-color: #{$color-slate-600}; //texto
+    --#{$prefix}-btn-border-color: transparent;
+    --#{$prefix}-btn-hover-bg: #{$color-slate-200};
+    --#{$prefix}-btn-hover-color: #{$color-slate-600};
+
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 12px 32px;
+    display: inline-flex;
+    outline: 0;
+    font-size: $fs-3n;
+    text-align: center;
+    transition: all .2s ease;
+    font-weight: $fw-4n;
+    line-height: $leading-1;
+    user-select: none;
+    text-transform: none;
+    text-decoration: none;
+
+    color: var(--#{$prefix}-btn-color);
+    border-color:var(--#{$prefix}-btn-border-color);
+    border-radius: $btn-radius;
+    background-color: var(--#{$prefix}-btn-bg);
+
+    //ESTADOS
+    &:hover{
+      color: var(--#{$prefix}-btn-hover-color);
+      background-color: var(--#{$prefix}-btn-hover-bg);
+    }
+    &:focus{
+        outline: 0;
+        box-shadow: 0 0 0 2px $color-focus;
+    }
+    &:active{
+        transform: scale3d(.95, .95, 1);
+    }
+    &:disabled{
+        opacity: .5;
+        pointer-events:none; //para que no tenga cursor
+    }
+
+    //TIPOS
+    //con borde
+    &.btn-outline{
+        --#{$prefix}-btn-bg: transparent;
+        --#{$prefix}-btn-color: #{$body-text-color};
+        --#{$prefix}-btn-border-color: #{$color-slate-300};
+        --#{$prefix}-btn-hover-bg: #{$color-slate-300};        
+    } 
+    //plano
+    &.btn-plain {
+        --#{$prefix}-btn-bg: transparent;
+        --#{$prefix}-btn-color: #{$body-text-color};      
+        --#{$prefix}-btn-hover-bg: #{$color-slate-300};
+    }
+
+    //TAMAÑOS
+    //pequeño
+    &.btn-sm{
+        padding: 8px 24px;
+        font-size: $fs-2;
+    }
+
+    &.btn-lg {
+        padding: 16px 48px;
+        font-size: $fs-4;
+    }
+    //grande
+
+    //block - todo el ancho del contenedor
+    &.btn-block{
+        width: 100%; //para que ocupe todo el contenedor
+        display: block;
+    }
+    &.btn-flex {
+        width: 100%; //para que ocupe todo el contenedor
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    //COLORES
+    //le paso las variables y crea la clase del boton
+    @include btnColorVariation('primary', $color-primary, $color-primary-hover, $color-primary-contrast);
+    @include btnColorVariation('secondary', $color-secondary, $color-secondary-hover, $color-secondary-contrast);   
+   
+    //secondary 'outline' y 'plain' fix, con esto quedan del mismo color del fondo
+    &.btn-secondary {
+        &.btn-outline {
+            --#{$prefix}-btn-color: #{$body-text-color};
+        }
+
+        &.btn-plain {
+            --#{$prefix}-btn-color: #{$body-text-color};
+        }
+    }
+}
+
+
+

@@ -249,7 +249,7 @@ CREO LOS AUTOS Y OPCIONES PARA C/U (interiores, colores) - FIN
 /**************************************************
 INTERACCIÓN
 **************************************************/
-
+/*
 //pido opciones 
 let opciones = [];
 alert("MODELOS"+"\n"+generarLista(autos)); //muestro lista de autos
@@ -268,6 +268,23 @@ let interiorSeleccionado    = autoSeleccionado.interiores.find((item) => item.id
 
 //muestro el resumen de lo seleccionado
 alert(obtenerMensajeResumen(autoSeleccionado, colorSeleccionado, interiorSeleccionado));
+*/
+
+//obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
+let padre = document.getElementById("modelsContainer");
+
+
+for (const item of autos) {
+    let modelo = document.createElement("label");
+    modelo.innerHTML += `<input type="radio" name="model" value="${item.id}">
+                          <img class="image image-l" src="${item.colores[0].imgB}">`;
+    padre.appendChild(modelo);
+    console.log(item.id +"-"+item.colores[0].imgB);
+       
+
+}
+
+//parrafo.innerHTML = ""
 
 /**************************************************
 INTERACCIÓN - FIN

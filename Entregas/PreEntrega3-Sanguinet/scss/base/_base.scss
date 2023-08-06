@@ -1,0 +1,41 @@
+html {
+    color-scheme: light; //tema de color
+    scroll-behavior: smooth; //scroll smooth
+}
+
+//solo scroll vertical
+html,
+body {
+    overflow-y: auto;
+    overflow-x: hidden;   
+}
+
+body {
+    /*tamaño y posicion*/
+    position: relative;
+    min-height: 100vh;
+
+    /*texto*/
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing: greyscale;
+    -webkit-text-size-adjust: 100%;
+    -webkit-top-highlight-color: transparent;
+
+    color: $body-text-color;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    font-weight: $font-weight-base;
+
+    /*fuentes seguras*/
+    font-family: $font-primary;
+    
+    /*fondo*/
+    background-color: $body-bg-color;
+}
+
+/** DEFAULT STYLES **/
+img {
+    display: block;
+    max-width: 100%;
+}

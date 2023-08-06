@@ -1,0 +1,26 @@
+.image{
+    transition: all 0.3s;
+    width: 100%;
+    height: 100%;
+    &-xl{        
+        width: 600px;
+        height: auto;
+    }
+    &-l {
+        width: 300px;
+        height: auto;
+       
+    }
+    &-m{
+        width: 70px;
+        height: auto;
+    }
+    &-s {
+        width: 45px;
+        height: auto;
+    }
+    &:hover {
+        transform: scale(1.2);
+    }
+    
+}
