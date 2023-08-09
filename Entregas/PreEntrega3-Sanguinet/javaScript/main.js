@@ -81,6 +81,44 @@ const generarLista = (arreglo) => {
     return mensaje;
 }
 
+//PRECARGAR TODO POR DEFECTO (se usa en el start y en restablecer)
+function precargar() {
+    //PRE CARGO INTERIORES
+    
+    //obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
+    let padre = document.getElementById("modelsContainer");
+
+
+    //PRE CARGO MODELOS
+    for (const item of autos) {
+        let modelo = document.createElement("label");
+        modelo.innerHTML += `<input type="radio" name="model" value="${item.id}">
+                            <img class="image image-l" src="./PreEntrega3Sanguinet/${item.colores[0].imgB}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+        padre.appendChild(modelo);  
+    }
+    padre = document.getElementById("interiorContainer");
+    for (const item of autos[0].interiores) {
+        let interior = document.createElement("label");
+        interior.innerHTML += `<input type="radio" name="interior" value="${item.id}">
+                            <img class="image image-m" src="./PreEntrega3Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+        padre.appendChild(interior);  
+    }
+
+    //PRE CARGO COLORES
+    padre = document.getElementById("colorContainer");
+    for (const item of autos[0].colores) {
+        let color = document.createElement("label");
+        color.innerHTML += `<input type="radio" name="color" value="${item.id}">
+                            <img class="image image-s" src="./PreEntrega3Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+        padre.appendChild(color);  
+        
+    }
+    //PRE CARGO CAR PREVIEW
+    padre = document.getElementById("car-preview"); //como no creo un un tag y solo agrego img a este car preview no tengo que hacer un create element, solo le cambio el inner HTML
+    //for (const item of autos[0].colores) {
+    padre.innerHTML += `<img class="image-xl" src="./PreEntrega3Sanguinet/${autos[0].colores[0].imgB}" alt="${autos[0].colores[0].nombre}">`;
+        padre.innerHTML += `<img class="image-xl" src="./PreEntrega3Sanguinet/${autos[0].colores[0].imgC}" alt="${autos[0].colores[0].nombre}">`;
+};
 /**************************************************
 FUNCIONES - FIN
 **************************************************/
@@ -268,23 +306,20 @@ let interiorSeleccionado    = autoSeleccionado.interiores.find((item) => item.id
 //muestro el resumen de lo seleccionado
 alert(obtenerMensajeResumen(autoSeleccionado, colorSeleccionado, interiorSeleccionado));
 */
-
-//obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
-let padre = document.getElementById("modelsContainer");
-
-
-for (const item of autos) {
-    let modelo = document.createElement("label");
-    modelo.innerHTML += `<input type="radio" name="model" value="${item.id}">
-                          <img class="image image-l" src="./PreEntrega3Sanguinet/${item.colores[0].imgB}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
-    padre.appendChild(modelo);
-    console.log(item.id +"-"+item.colores[0].imgB);
-       
-
-}
-
-//parrafo.innerHTML = ""
-
 /**************************************************
 INTERACCIÓN - FIN
 **************************************************/
+
+
+/**************************************************
+LOGICA DE PRECARGA
+**************************************************/
+
+precargar();
+
+
+/**************************************************
+LOGICA DE PRECARGA - FIN
+**************************************************/
+
+

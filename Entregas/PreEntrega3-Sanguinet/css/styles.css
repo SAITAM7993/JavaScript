@@ -843,7 +843,7 @@ p:last-child {
   grid-area: actions;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .grid-container {
     grid-template-areas: "models" "interior" "colors" "car-preview" "actions";
   }
@@ -854,11 +854,11 @@ p:last-child {
   height: 100%;
 }
 .image-xl {
-  width: 600px;
+  width: 550px;
   height: auto;
 }
 .image-l {
-  width: 300px;
+  width: 450px;
   height: auto;
 }
 .image-m {

@@ -70,86 +70,37 @@
             <div class="grid-container" id ="simulador">                  
                     <section class="container" id="models">
                         <h3>Modelo</h3>
-                        <div class="hiddenradio flex-container-columns" id = "modelsContainer">
-                            <!--
-                            <label>
-                                <input type="radio" name="model" value="1">
-                                <img class="image image-l" src="./media/cars/r8/perfil/1.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="model" value="small" checked>
-                                <img class="image image-l" src="./media/cars/e_tron_R8/perfil/1.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="model" value="2">
-                                <img class="image image-l" src="./media/cars/rs3_sedan/perfil/1.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="model" value="3">
-                                <img class="image image-l" src="./media/cars/s3_sportback_tfsi/perfil/1.webp">
-                            </label>
-                            -->
-                        </div>
-                     
+                        <div class="hiddenradio flex-container-columns" id = "modelsContainer">  
+                            <!--Aca se cargaran los modelos para que se seleccionen, de esta seleccion depende el resto de las cargas-->
+                        </div>                     
                     </section>
                     <section class="container" id="interior">
                         <h3>Interior</h3>
-                        <div class="hiddenradio flex-container-columns">
+                        <div class="hiddenradio flex-container-columns" id ="interiorContainer">
+                            <!--Aca se cargaran los interiores del auto seleccionado-->
+                            <!--
                             <label>
                                 <input type="radio" name="interior" value="A" checked>
                                 <img class="image image-m" src="./media/cars/r8/interior/A.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="interior" value="B">
-                                <img class="image image-m" src="./media/cars/r8/interior/B.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="interior" value="C">
-                                <img class="image image-m" src="./media/cars/r8/interior/C.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="interior" value="D">
-                                <img class="image image-m" src="./media/cars/r8/interior/D.webp">
-                            </label>
+                            </label> //dejo por las dudas, el checked marca algo..
+                        -->
                         </div>
                     </section>
                     <section class="container" id="colors">
                         <h3>Colores</h3>
-                        <div class="hiddenradio flex-container-columns">
+                        <div class="hiddenradio flex-container-columns" id = "colorContainer">
+                            <!--Aca se cargaran los colores del auto seleccionado-->
+                            <!--
                             <label>
                                 <input type="radio" name="color" value="1" checked>
                                 <img class="image image-s" src="./media/cars/r8/colores/1.webp">
                             </label>
-                            <label>
-                                <input type="radio" name="color" value="2">
-                                <img class="image image-s" src="./media/cars/r8/colores/2.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="color" value="3">
-                                <img class="image image-s" src="./media/cars/r8/colores/3.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="color" value="4" checked>
-                                <img class="image image-s" src="./media/cars/r8/colores/4.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="color" value="5">
-                                <img class="image image-s" src="./media/cars/r8/colores/5.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="color" value="6">
-                                <img class="image image-s" src="./media/cars/r8/colores/6.webp">
-                            </label>
-                            <label>
-                                <input type="radio" name="color" value="7" checked>
-                                <img class="image image-s" src="./media/cars/r8/colores/7.webp">
-                            </label>
+                            -->                        
                         </div>
                     </section>       
                
                     <section class ="container" id="car-preview">
-                        <img class="image-xl" src="./media/cars/r8/perfil/1.webp" alt="">
-                        <img class="image-xl" src="./media/cars/r8/frente/1.webp" alt="">
+                        <!--Aca se cargaran las img de frente y perfil del auto seleccionado-->                       
                     </section>    
                 
                 <section class="container" id="actions">
