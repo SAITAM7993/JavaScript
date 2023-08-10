@@ -92,15 +92,15 @@ function precargar() {
     //PRE CARGO MODELOS
     for (const item of autos) {
         let modelo = document.createElement("label");
-        modelo.innerHTML += `<input type="radio" name="model" value="${item.id}">
-                            <img class="image image-l" src="./PreEntrega3Sanguinet/${item.colores[0].imgB}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+        modelo.innerHTML += `<input type="radio" name="model" value="${item.id}" id="inputModel${item.id}">
+                            <img class="image image-l" src="./PreEntrega3-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(modelo);  
     }
     padre = document.getElementById("interiorContainer");
     for (const item of autos[0].interiores) {
         let interior = document.createElement("label");
         interior.innerHTML += `<input type="radio" name="interior" value="${item.id}">
-                            <img class="image image-m" src="./PreEntrega3Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+                            <img class="image image-m" src="./PreEntrega3-Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(interior);  
     }
 
@@ -108,16 +108,17 @@ function precargar() {
     padre = document.getElementById("colorContainer");
     for (const item of autos[0].colores) {
         let color = document.createElement("label");
-        color.innerHTML += `<input type="radio" name="color" value="${item.id}">
-                            <img class="image image-s" src="./PreEntrega3Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
+        color.innerHTML += `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
+                            <img class="image image-s" src="./PreEntrega3-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(color);  
+
         
     }
     //PRE CARGO CAR PREVIEW
     padre = document.getElementById("car-preview"); //como no creo un un tag y solo agrego img a este car preview no tengo que hacer un create element, solo le cambio el inner HTML
     //for (const item of autos[0].colores) {
-    padre.innerHTML += `<img class="image-xl" src="./PreEntrega3Sanguinet/${autos[0].colores[0].imgB}" alt="${autos[0].colores[0].nombre}">`;
-        padre.innerHTML += `<img class="image-xl" src="./PreEntrega3Sanguinet/${autos[0].colores[0].imgC}" alt="${autos[0].colores[0].nombre}">`;
+    padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[0].colores[0].imgB}" alt="${autos[0].colores[0].nombre}" id = "carPreview-perfil">`;
+        padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[0].colores[0].imgC}" alt="${autos[0].colores[0].nombre}" id = "carPreview-frente">`;
 };
 /**************************************************
 FUNCIONES - FIN
@@ -316,8 +317,57 @@ LOGICA DE PRECARGA
 **************************************************/
 
 precargar();
+//obtengo el html que contiene los modelos
+let listaModelos = document.getElementById("modelsContainer");
+
+//obtengo las img del html que contiene los modelos
+let img = listaModelos.getElementsByTagName("img");
+
+let arrayOpciones = [];
 
 
+let opcModelo = 0;
+for (let item of img) { //recorro las img para agregarle un evento
+    console.log(item.id);
+    item.addEventListener('click', () => {
+        console.log("click a " + item.id);
+        opcModelo = item.id.replace(/\D/g, '');//obtengo el valor numerico
+        //tomo el html que contiene las img del preview
+        let listaPreview = document.getElementById("car-preview");
+        //tomo solo las img
+        let imgPreview = listaPreview.getElementsByTagName("img");
+        //recorro los tags img
+        for (let itemImg of imgPreview) {
+            console.log(itemImg.id);
+            //le cambio el atributo src  
+            for (const itemAuto of autos) {               
+                if (itemAuto.id === parseInt(opcModelo)) {     
+                    if (itemImg.id == "carPreview-perfil") {
+                        src = itemAuto.colores[0].imgB;
+                    } else if (itemImg.id = "carPreview-frente") {
+                        src = itemAuto.colores[0].imgC;
+                    }
+                    itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);                   
+                }         
+            
+            }
+       
+        }
+    }
+    )
+};
+
+/*
+for (const itemAuto of autos) {
+                if (itemAuto.id === parseInt(itemImg.id)) {
+                    src = itemAuto.colores[0].imgA;
+                    console.log(itemAuto.colores[0].imgA);
+                }
+             
+                //itemImg.setAttribute(`"src", "${src}"`);
+            }
+
+*/
 /**************************************************
 LOGICA DE PRECARGA - FIN
 **************************************************/
