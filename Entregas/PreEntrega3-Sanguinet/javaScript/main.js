@@ -48,20 +48,22 @@ FUNCIONES
 **************************************************/ 
 
 //Función genérica para que pida dato nuevamente en caso de error hasta que de ok
+/* no se usaria mas
 function pedirOpc(rangoA, rangoB, categoria) {
     let opc = parseInt(prompt(`Seleccione ${categoria} [${rangoA} al ${rangoB-1}]`));
     while (opc < rangoA || opc > rangoB){    
 		 opc = parseInt(prompt(`ERROR: Seleccione ${categoria} [${rangoA-1} al ${rangoB}]`));	
     } 
 	return opc;
-}
+}*/
 
-//calcula el total dados 3 objetos que contienen precio
+//calcula el total dados 3 objetos que contienen precio - ver si se usa
 function calcularTotal(auto, color, interior) {     
     return auto.precio + color.precio + interior.precio;   
 };
 
 //creo el mensaje de resumen con los precios de cada opc seleccionada y el total
+/*
 function obtenerMensajeResumen(auto, color, interior) {
     let mensaje = 'Usted seleccionó: \n';
     mensaje += `Modelo:  ${auto.nombre} - $ ${auto.precio}\n`;
@@ -71,27 +73,29 @@ function obtenerMensajeResumen(auto, color, interior) {
     let total = calcularTotal(auto, color, interior);
     mensaje += `Total: $ ${total}\n`; 
     return mensaje;
-};
-
+};no se usa mas*/
+/*
 //genero una lista de items para mostrar antes de que seleccione 
 const generarLista = (arreglo) => {
     let mensaje = 'Opciones disponibles \n'
     let info = arreglo.map((item) =>`[${item.id}] ${item.nombre} - $ ${item.precio}`);
     mensaje += info.join('\n');
     return mensaje;
-}
+}no se usa mas*/ 
 
 //Carga opciones de interiores y colores según modelo seleciconado
 function cargarOpciones(modelo) {
     //CARGO INTERIORES
     let padre = document.getElementById("interiorContainer");    
     padre.innerHTML = "";
-    for (const item of autos[modelo].interiores) {
+    for (const item of autos[modelo].interiores) {       ; 
         let interior = document.createElement("label"); 
         interior.innerHTML = `<input type="radio" name="interior" value="${item.id}">
                             <img class="image image-m" src="./PreEntrega3-Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         
         padre.appendChild(interior);  
+        cargarEvento("interior");
+    
     }
 
     //CARGO COLORES    
@@ -101,27 +105,25 @@ function cargarOpciones(modelo) {
         let color = document.createElement("label"); 
         color.innerHTML = `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
                             <img class="image image-s" src="./PreEntrega3-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3        
-        padre.appendChild(color);          
+        padre.appendChild(color);   
+        cargarEvento("color");
     }  
  };
 
+ 
 //FUNCION PARA CARGAR evento click en las img de modelo
 function cargarEventoModelos() {
     //obtengo el html que contiene los modelos
     let listaModelos = document.getElementById("modelsContainer");
-
     //obtengo las img del html que contiene los modelos
-    let img = listaModelos.getElementsByTagName("img");
-
-    for (let item of img) { //recorro las img para agregarle un evento
-        console.log(item.id);
-        item.addEventListener('click', () => {
-        
-            let opcModelo = item.id.replace(/\D/g, '');//obtengo el valor numerico
+    let input = listaModelos.getElementsByTagName("input");    
+    for (let item of input) { //recorro las img/input para agregarle un evento        
+        item.addEventListener('click', () => {                         
+            let opcModelo = item.value //id.replace(/\D/g, '');//obtengo el valor numerico
             //tomo el html que contiene las img del preview
             let listaPreview = document.getElementById("car-preview");
             //tomo solo las img
-            let imgPreview = listaPreview.getElementsByTagName("img");
+            let imgPreview = listaPreview.getElementsByTagName("img");    
             //recorro los tags img
             for (let itemImg of imgPreview) {
                 //le cambio el atributo src  
@@ -133,19 +135,31 @@ function cargarEventoModelos() {
                             src = itemAuto.colores[0].imgC;
                         }
                         itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);
-
-
-                    }
-            
-                }
-       
+                    }            
+                }       
             }
-
             cargarOpciones(opcModelo);
+            //guardo lo seleccionado en session para luego poder usarlo en el calulcar precio! me evito pelear con los checked de cada opcion
+            sessionStorage.setItem("modelo", opcModelo);
+            sessionStorage.setItem("color", 0); //cuando cargo los colores del modelo lo seteo a 0 por defecto
+            sessionStorage.setItem("interior", 0);//cuando cargo los colores del modelo lo seteo a 0 por defecto
         }
-        )
-    }
+    )
+    }   
+    
 };
+
+//CARGAR evento interior o color, le paso categoría (TIENE QUE SER EXACTO como el container  - palabra container ej interior o color), es diferente a modelos porque es mas sencillo
+function cargarEvento(categoria){ 
+    let padre = document.getElementById(categoria+"Container");
+    let input = padre.getElementsByTagName("input");  //obtengo los inputs de colores
+    for (let item of input) {        
+        item.addEventListener('click', () => {           
+            sessionStorage.setItem(categoria, item.value);
+        });
+    }
+
+}
 
 
 //PRECARGAR TODO POR DEFECTO (se usa en el start y en restablecer)
@@ -154,8 +168,8 @@ function precargar() {
     
     //obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
     let padre = document.getElementById("modelsContainer");
-
-
+   // padre.innerHTML = '<form id = "interiorForm"></from>'; intente con forms para checkear pero no me funciona bien las img
+    //padre = document.getElementById("interiorForm");
     //PRE CARGO MODELOS
     for (const item of autos) {
         let modelo = document.createElement("label");
@@ -188,16 +202,68 @@ function precargar() {
     padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[0].colores[0].imgB}" alt="${autos[0].colores[0].nombre}" id = "carPreview-perfil">`;
     padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[0].colores[0].imgC}" alt="${autos[0].colores[0].nombre}" id = "carPreview-frente">`;
     
-    //cargo evento click a modelos
+    //cargo evento click a modelos interiores y colores
     cargarEventoModelos();
+    cargarEvento("interior");
+    cargarEvento("color");
 };
 
-
+//LIMPIA todo lo seleccionado para luego precargar
+function limpiar() { 
+    let padre = document.getElementById("modelsContainer");
+    padre.innerHTML = "";
+    padre = document.getElementById("interiorContainer");
+    padre.innerHTML = "";
+    padre = document.getElementById("colorContainer");
+    padre.innerHTML = "";
+    padre = document.getElementById("car-preview"); 
+    padre.innerHTML = "";
+}
 
 /**************************************************
 FUNCIONES - FIN
 **************************************************/
 
+/**************************************************
+EVENTOS (otros eventos que no agregué dentro de las funciones)
+**************************************************/
+// CONSULTAR 
+//Obtengo el ID del modal(ventana emergente)
+let modal = document.getElementById("modalConsultar");
+
+//Obtengo el btn consultar
+var btnConsultar = document.getElementById("consultar");
+
+//Obtngo el span para cerrar
+var spanClose = document.getElementsByClassName("close")[0];
+
+//Agrego evento click para que abra el modal (tengo que agregarle que cargue cosas)
+btnConsultar.onclick = function() {
+    modal.style.display = "block";    
+}
+
+//Para que cuando le den click al span de cerrar se cierre el span
+spanClose.onclick = function() {
+  modal.style.display = "none";
+}
+
+// para que si clickea fuera del modal tambien se cierra
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+//RESTABLECER 
+//Obtengo el id del boton restablecer
+let btnRestablecer = document.getElementById("restablecer");
+btnRestablecer.onclick = function () { 
+    limpiar(); //borro todo el contenido de modelos, preview, colores, interiores y luego lo vuelvo a precargar 
+    precargar();
+}
+/**************************************************
+EVENTOS - FIN
+**************************************************/
 /**************************************************
 CREO LOS AUTOS Y OPCIONES PARA C/U (interiores, colores)
 **************************************************/ 
@@ -391,7 +457,6 @@ LOGICA DE PRECARGA
 **************************************************/
 
 precargar();
-
 
 
 /*
