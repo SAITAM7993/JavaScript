@@ -156,6 +156,16 @@ function cargarEvento(categoria){
     for (let item of input) {        
         item.addEventListener('click', () => {           
             sessionStorage.setItem(categoria, item.value);
+            if (categoria === "color") {
+
+                
+                let modelo = sessionStorage.getItem("modelo");
+                let color = sessionStorage.getItem("color");               
+                padre = document.getElementById("car-preview");
+                padre.innerHTML = "";
+                padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modelo].colores[color].imgB}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-perfil">`;
+                padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modelo].colores[color].imgC}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-frente">`;
+            }
         });
     }
 
@@ -424,33 +434,6 @@ const autos = [
 CREO LOS AUTOS Y OPCIONES PARA C/U (interiores, colores) - FIN
 **************************************************/
 
-/**************************************************
-INTERACCIÓN
-**************************************************/
-/*
-//pido opciones 
-let opciones = [];
-alert("MODELOS"+"\n"+generarLista(autos)); //muestro lista de autos
-opciones.push(pedirOpc(0, autos.length, "MODELO")); //inserto modelo seleccionado al arreglo de opciones - lo hago con push para utilizarlo 
-//obtengo seleccionados uso find porque siempre va a ser uno (y utilizar funciones de alto orden)
-let autoSeleccionado = autos.find((item) => item.id === opciones[0]); //me quedo con el auto seleccionado
-
-alert("COLORES"+"\n"+generarLista(autoSeleccionado.colores));
-opciones.push(pedirOpc(0, autoSeleccionado.colores.length, "COLOR"));
-let colorSeleccionado = autoSeleccionado.colores.find((item) => item.id === opciones[1]); //me quedo con el color seleccionado
-
-alert("INTERIORES"+"\n"+generarLista(autoSeleccionado.interiores));
-opciones.push(pedirOpc(0, autoSeleccionado.interiores.length, "INTERIOR"));
-let interiorSeleccionado    = autoSeleccionado.interiores.find((item) => item.id === opciones[2]); //me quedo con el interior seleccionado
-
-
-//muestro el resumen de lo seleccionado
-alert(obtenerMensajeResumen(autoSeleccionado, colorSeleccionado, interiorSeleccionado));
-*/
-/**************************************************
-INTERACCIÓN - FIN
-**************************************************/
-
 
 /**************************************************
 LOGICA DE PRECARGA
@@ -459,19 +442,6 @@ LOGICA DE PRECARGA
 precargar();
 
 
-/*
-for (const itemAuto of autos) {
-                if (itemAuto.id === parseInt(itemImg.id)) {
-                    src = itemAuto.colores[0].imgA;
-                    console.log(itemAuto.colores[0].imgA);
-                }
-             
-                //itemImg.setAttribute(`"src", "${src}"`);
-            }
-
-*/
 /**************************************************
 LOGICA DE PRECARGA - FIN
 **************************************************/
-
-
