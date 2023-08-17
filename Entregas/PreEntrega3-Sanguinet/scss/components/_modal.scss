@@ -1,47 +1,38 @@
-/* The Modal (background) */
+
 .modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
+    display: none; //oculto por defecto   
+    position: fixed; //para que quede fijo 
+    z-index: 1; //para que quede arriba    
+    padding-top: 10%; //lugar en donde va a aparecer
     left: 0;
     top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+    width: 100%; //que ocupe todo  el ancho
+    height: 100%; //que ocupe todo el alto
+    overflow: auto; //para que aparezca scroll si es necesario   
+    background-color: rgba(0, 0, 0, 0.6);// color de fondo con opacidad (atras de la ventana)
 }
 
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
+//contenido del modal
+.modal-content {      
+    background-color: $body-bg-color;
+    color: $body-text-color;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border: 1px solid $card-border;
+    width: 30%;
+    box-shadow: $shadow-1;
 }
 
-/* The Close Button */
-.close {
-    color: #aaaaaa;
+/* Boton para cerrar x */
+.close {    
+    color: $body-text-color;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+    font-size: $fs-6;;
+    font-weight: $fw-5;
+    &:hover {           
+            color: $color-focus;
+            transform: scale(1.1);
+            cursor: pointer;
+            text-decoration: none;
+        }
 }

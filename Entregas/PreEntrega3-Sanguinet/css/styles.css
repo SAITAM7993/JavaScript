@@ -1332,52 +1332,41 @@ p:last-child {
   outline: 2.2px solid var(--def-color-primary-hover, #60a5fa);
 }
 
-/* The Modal (background) */
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
+  padding-top: 10%;
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: var(--def-body-bg-color, #f1f5f9);
+  color: var(--def-body-text-color, #64748b);
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 1px solid var(--def-card-border, #e2e8f0);
+  width: 30%;
+  box-shadow: 0 1px 2px 0 rgb(var(--prefix-shadow-color, 51 65 85)/0.05);
 }
 
-/* The Close Button */
+/* Boton para cerrar x */
 .close {
-  color: #aaaaaa;
+  color: var(--def-body-text-color, #64748b);
   float: right;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
+.close:hover {
+  color: var(--def-color-focus, #94a3b8);
+  transform: scale(1.1);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .base-layout {
