@@ -45,25 +45,25 @@ function calcularTotal(auto, color, interior) {
 function cargarOpciones(modelo) {
     //CARGO INTERIORES
     let padre = document.getElementById("interiorContainer");    
-    padre.innerHTML = "";
-    for (const item of autos[modelo].interiores) {       ; 
+    padre.innerHTML = ""; //borro lo que tenia cargado    
+    autos[modelo].interiores.forEach((item) => { //recorro interiores del modelo seleccionado
         let interior = document.createElement("label"); 
         interior.innerHTML = `<input type="radio" name="interior" value="${item.id}">
                             <img class="image image-m" src="./PreEntrega3-Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3        
         padre.appendChild(interior);  
-        cargarEvento("interior");    
-    }
+        cargarEvento("interior");   
+    });
 
     //CARGO COLORES    
     padre = document.getElementById("colorContainer");
     padre.innerHTML = "";
-    for (const item of autos[modelo].colores) {
+    autos[modelo].colores.forEach((item) => {//colores del modelo seleccionado 
         let color = document.createElement("label"); 
         color.innerHTML = `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
                             <img class="image image-s" src="./PreEntrega3-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3        
         padre.appendChild(color);   
         cargarEvento("color");
-    }  
+    });
  };
 
 //FUNCION PARA CARGAR evento click en las img de modelo
@@ -82,24 +82,24 @@ function cargarEventoModelos() {
             //recorro los tags img
             for (let itemImg of imgPreview) {
                 //le cambio el atributo src  
-                for (const itemAuto of autos) {
+                autos.forEach((item) => { //recorro los autos
                     //si el modelo del auto coincide con el seleccionado Y el item que estoy es el de perfil asigno la img de perfil (src)
                     //si el modelo del auto coincide con el seleccionado Y el item que estoy es el de perfil asigno la img de frente (src)
                     //luego si el modelo del auto coincide con el seleccionado le seteo el src
-                    (itemAuto.id === parseInt(opcModelo) && itemImg.id === "carPreview-perfil") && (src = itemAuto.colores[0].imgB);
-                    (itemAuto.id === parseInt(opcModelo) && itemImg.id === "carPreview-frente") && (src = itemAuto.colores[0].imgC);         
-                     itemAuto.id === parseInt(opcModelo) && itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`); 
-                   
-                     /*  esta logica es reemplazado con lo de arriba para cumplir con la entrega (operadores avanzados)
-                    if (itemAuto.id === parseInt(opcModelo)) {
-                        if (itemImg.id == "carPreview-perfil") {
-                            src = itemAuto.colores[0].imgB;
-                        } else if (itemImg.id = "carPreview-frente") {
-                            src = itemAuto.colores[0].imgC;
-                        }                        
-                        itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);
-                    }*/                    
-                }       
+                    console.log(item.id);
+                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-perfil") && (src = item.colores[0].imgB);
+                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-frente") && (src = item.colores[0].imgC);
+                    item.id === parseInt(opcModelo) && itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);                   
+                    /*  esta logica es reemplazado con lo de arriba para cumplir con la entrega (operadores avanzados)
+                   if (itemAuto.id === parseInt(opcModelo)) {
+                       if (itemImg.id == "carPreview-perfil") {
+                           src = itemAuto.colores[0].imgB;
+                       } else if (itemImg.id = "carPreview-frente") {
+                           src = itemAuto.colores[0].imgC;
+                       }                        
+                       itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);
+                   }*/
+                });     
             }
             cargarOpciones(opcModelo);
             //guardo lo seleccionado en session para luego poder usarlo en el calulcar precio! me evito pelear con los checked de cada opcion
@@ -131,35 +131,36 @@ function cargarEvento(categoria){
 
 //PRECARGAR TODO POR DEFECTO (se usa en el start y en restablecer)
 function precargar() {
-    //PRE CARGO INTERIORES
-    
+    //PRE CARGO INTERIORES    
     //obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
-    let padre = document.getElementById("modelsContainer");
-  
+    let padre = document.getElementById("modelsContainer");  
+    
     //PRE CARGO MODELOS
-    for (const item of autos) {
+    autos.forEach((item) => { 
         let modelo = document.createElement("label");
         modelo.innerHTML += `<input type="radio" name="model" value="${item.id}" id="inputModel${item.id}">
                             <img class="image image-l" src="./PreEntrega3-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
-        padre.appendChild(modelo);  
-    }
+        padre.appendChild(modelo);
+    });
 
+    //PRE CARGO INTERIORES
     padre = document.getElementById("interiorContainer");
-    for (const item of autos[0].interiores) {
+    autos[0].interiores.forEach((item) =>{
         let interior = document.createElement("label");
         interior.innerHTML += `<input type="radio" name="interior" value="${item.id}">
                             <img class="image image-m" src="./PreEntrega3-Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(interior);  
-    }
+    });
 
     //PRE CARGO COLORES
     padre = document.getElementById("colorContainer");
-    for (const item of autos[0].colores) {
+    autos[0].colores.forEach((item) => { 
         let color = document.createElement("label");
         color.innerHTML += `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
                             <img class="image image-s" src="./PreEntrega3-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
-        padre.appendChild(color);         
-    }
+        padre.appendChild(color);   
+    });
+   
     //PRE CARGO CAR PREVIEW
     padre = document.getElementById("car-preview"); //como no creo un un tag y solo agrego img a este car preview no tengo que hacer un create element, solo le cambio el inner HTML    
     padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[0].colores[0].imgB}" alt="${autos[0].colores[0].nombre}" id = "carPreview-perfil">`;
