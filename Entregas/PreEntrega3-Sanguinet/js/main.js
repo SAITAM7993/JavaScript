@@ -1,4 +1,4 @@
-let autos = JSON.parse(localStorage.getItem("autos")); //obtengo los autos del local storage
+export const autos = JSON.parse(localStorage.getItem("autos")); //obtengo los autos del local storage, con el export lo puedo usar en logica-interaccion.js
 
 /**************************************************
 FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS 
@@ -70,6 +70,9 @@ const cargarOpciones = (autos, modeloSel) => {
                         <img class="image image-l" src="./PreEntrega3-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
             padre.appendChild(modelo);
         });
+        sessionStorage.setItem("modelo", 0);
+        sessionStorage.setItem("color", 0);
+        sessionStorage.setItem("interior", 0);    
     }
 
     //CARGO INTERIORES
@@ -111,60 +114,24 @@ function limpiar() {
     padre = document.getElementById("colorContainer");
     padre.innerHTML = "";
     padre = document.getElementById("car-preview"); 
-    padre.innerHTML = "";
+    padre.innerHTML = "";   
+    sessionStorage.setItem("modelo", 0);
+    sessionStorage.setItem("color", 0);
+    sessionStorage.setItem("interior", 0);
 }
 
-/**************************************************
-FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS - FIN 
-**************************************************/
-
-/**************************************************
-EVENTOS (otros eventos para botones y modals)
-**************************************************/
-
-//CONSULTAR 
-//Obtengo el ID del modal(ventana emergente)
-let modal = document.getElementById("modalConsultar");
-
-//Obtengo el btn consultar
-var btnConsultar = document.getElementById("consultar");
-
-//Obtngo el span para cerrar
-var spanClose = document.getElementsByClassName("close")[0];
-
-//Agrego evento click para que abra el modal (tengo que agregarle que cargue cosas)
-btnConsultar.onclick = function() {
-    modal.style.display = "block";    
-}
-
-//Para que cuando le den click al span de cerrar se cierre el span
-spanClose.onclick = function() {
-  modal.style.display = "none";
-}
-
-// para que si clickea fuera del modal tambien se cierra
-window.onclick = function (event) {
-    event.target == modal && (modal.style.display = "none");
-}
-/*el codigo de arriba con op avanzado lo sustituye
-window.onclick = function(event) {
-  event.target == modal &&
-    modal.style.display = "none";
-  }
-}*/
-
-//RESTABLECER 
+//RESTABLECER
 //Obtengo el id del boton restablecer
-let btnRestablecer = document.getElementById("restablecer");
+const btnRestablecer = document.getElementById("restablecer");
 btnRestablecer.onclick = function () { 
     limpiar(); //borro todo el contenido de modelos, preview, colores, interiores y luego lo vuelvo a precargar 
     cargarOpciones(autos, 0); //cargo todas las opciones
     cargarEventoModelos(autos); //cargo los eventos
 }
-
 /**************************************************
-EVENTOS (otros eventos para botones y modals) - FIN
+FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS - FIN 
 **************************************************/
+
 
 /**************************************************
 CARGA DE DOM

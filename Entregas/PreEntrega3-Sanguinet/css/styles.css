@@ -107,6 +107,10 @@ p:last-child {
   margin-bottom: 0;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .container {
   width: 100%;
   display: block;
@@ -1338,7 +1342,7 @@ p:last-child {
   z-index: 1;
   padding-top: 10%;
   left: 0;
-  top: 0;
+  top: 50px;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -1352,7 +1356,15 @@ p:last-child {
   padding: 20px;
   border: 1px solid var(--def-card-border, #e2e8f0);
   width: 30%;
+  min-width: 300px;
   box-shadow: 0 1px 2px 0 rgb(var(--prefix-shadow-color, 51 65 85)/0.05);
+}
+.modal-content table {
+  text-align: left;
+  width: 100%;
+}
+.modal-content table td, .modal-content table th {
+  border-bottom: 1px solid;
 }
 
 /* Boton para cerrar x */

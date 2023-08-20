@@ -197,7 +197,7 @@ export const autos = [
             id: 1,
             imgA: "../media/cars/rs3_sedan/colores/2.webp",
             imgB: "../media/cars/rs3_sedan/perfil/2.webp",
-            imgC: "../media/cars/r8/frente/2.webp", 
+            imgC: "../media/cars/rs3_sedan/frente/2.webp", 
             nombre: "Gris metalizado",
             precio: 5000
         },
@@ -219,9 +219,9 @@ export const autos = [
         },
         {
             id: 4,
-            imgA: "../media/cars/r8/colores/5.webp",
-            imgB: "../media/cars/r8/perfil/5.webp",
-            imgC: "../media/cars/r8/frente/5.webp",
+            imgA: "../media/cars/rs3_sedan/colores/5.webp",
+            imgB: "../media/cars/rs3_sedan/perfil/5.webp",
+            imgC: "../media/cars/rs3_sedan/frente/5.webp",
             nombre: "Amarillo",
             precio: 5000
         },
@@ -363,5 +363,5 @@ export const autos = [
 ];
 
 //si el localStorage de autos NO está vacío lo obtengo, sino lo seteo/creo
-//localStorage.clear(); si cambio algo en el codigo tengo que hacer un clear porque sino no sobreescribe
+//localStorage.clear(); //si cambio algo en el codigo tengo que hacer un clear porque sino no sobreescribe
 JSON.parse(localStorage.getItem("autos")) || localStorage.setItem("autos", JSON.stringify(autos));

@@ -112,26 +112,18 @@
             </div>            
         </div>
 
-        <div id="modalConsultar" class="modal">    
+        <div id="modalConsultar" class="modal">                
             <!-- Modal content -->
-            <div class="modal-content">          
-                <span class="close">x</span>
-                <p>PRECIO0 : TANTO</p>
-                <p>PRECIO2 : TANTO</p>
-                <p>PRECIO3 : TANTO</p>
-                <p>PRECIO4 : TANTO</p>
-                <div class="flex-container">
-                    <button id="modal-cerrar" class="btn btn-outline btn-flex  btn-secondary ">Cerrar</button>
-                    <button id="modal-aceptar" class="btn btn-outline btn-flex btn-primary">Aceptar</button>
-                </div>
+            <div class="modal-content" id  ="modal-content">
+               
             </div>        
         </div>
     
     </main>  
     <footer class="base-footer">Simulador de autos Audix</footer> 
-    <script type="module" src="./db/autos.js"></script> <!--simula un llamado a una db-->
+    <script type="module" src="./db/autos.js"></script> <!--simula un llamado a una db-->    
     <script type="module" src= "./js/main.js"></script>
-    <!--<script src="./javaScript/main.js"></script>-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> <!--libreria pdf-->
+    <script type="module" src="./js/logica-interaccion.js"></script>        
 </body>
-
 </html>
