@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
     <link rel="shortcut icon" href="./media/icons/logo.webp" type="image/x-icon">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Cotizador Audix</title>
+    <title>Simulador Audix</title>
 </head>
 
 <body class="base-layout" id="inicio">
@@ -77,25 +77,13 @@
                     <section class="container" id="interior">
                         <h3>Interior</h3>
                         <div class="hiddenradio flex-container-columns" id ="interiorContainer">
-                            <!--Aca se cargaran los interiores del auto seleccionado-->
-                            <!--
-                            <label>
-                                <input type="radio" name="interior" value="A" checked>
-                                <img class="image image-m" src="./media/cars/r8/interior/A.webp">
-                            </label> //dejo por las dudas, el checked marca algo..
-                        -->
+                            <!--Aca se cargaran los interiores del auto seleccionado-->                          
                         </div>
                     </section>
                     <section class="container" id="colors">
                         <h3>Colores</h3>
                         <div class="hiddenradio flex-container-columns" id = "colorContainer">
-                            <!--Aca se cargaran los colores del auto seleccionado-->
-                            <!--
-                            <label>
-                                <input type="radio" name="color" value="1" checked>
-                                <img class="image image-s" src="./media/cars/r8/colores/1.webp">
-                            </label>
-                            -->                        
+                            <!--Aca se cargaran los colores del auto seleccionado-->                           
                         </div>
                     </section>       
                
@@ -111,23 +99,19 @@
                 </section>              
             </div>            
         </div>
-
         <div id="modalConsultar" class="modal">                
             <!-- Modal content -->
             <div class="modal-content" id  ="modal-content">
-               
+                <!--Aca se cargaran los datos del auto seleccionado y botones de accion-->
             </div>        
-        </div>
-    
+        </div>    
     </main>  
-    <footer class="base-footer">Simulador de autos Audix</footer> 
+    <footer class="base-footer">Simulador de autos Audix - MSanguinet</footer> 
     <script type="module" src="./db/autos.js"></script> <!--simula un llamado a una db-->   
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> <!--libreria pdf-->
     <script src="https://unpkg.com/jspdf-autotable@latest/dist/jspdf.plugin.autotable.js"></script>
     <!--libreria para tablas automaticas de jspdf-->
     <script type="module" src= "./js/main.js"></script>     
-    <script type="module" src="./js/logica-interaccion.js"></script>   
-    
-    
+    <script type="module" src="./js/logica-interaccion.js"></script>      
 </body>
 </html>

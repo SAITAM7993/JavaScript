@@ -9,26 +9,27 @@ function calcularTotal(...numero) {//los .. hace que se le pueda pasar cualquier
   numero.map(x => suma += x); //sumo TODOS los items del array 
   return suma;
 }
-//COSNTRUCTOR RESUMEN (para usar consutrctores)
+//COSNTRUCTOR RESUMEN (para usar constructores)
 class Resumen { 
   constructor(nomModelo,precioModelo, nomColor, imgColor, imgPerfil, precioColor, nomInterior,imgInterior,precioInterior) {        
-    this.nomModelo = nomModelo;
-    this.precioModelo = precioModelo; 
-    this.nomColor = nomColor; 
-    this.imgColor = imgColor; 
-    this.imgPerfil = imgPerfil; 
-    this.precioColor = precioColor; 
-    this.nomInterior = nomInterior; 
-    this.imgInterior = imgInterior; 
+    this.nomModelo      = nomModelo;
+    this.precioModelo   = precioModelo; 
+    this.nomColor       = nomColor; 
+    this.imgColor       = imgColor; 
+    this.imgPerfil      = imgPerfil; 
+    this.precioColor    = precioColor; 
+    this.nomInterior    = nomInterior; 
+    this.imgInterior    = imgInterior; 
     this.precioInterior = precioInterior;  
-    this.precioTotal = calcularTotal(precioModelo, precioColor, precioInterior);
+    this.precioTotal    = calcularTotal(precioModelo, precioColor, precioInterior);
   }         
 }
-
+//obtiene el auto seleccionado desde un id en session y una coleccion de autos que se le pase
 function obtenerAutoSeleccionado() {     
   const seleccionado = autos.find((auto) => auto.id === parseInt(sessionStorage.getItem("modelo"))) || console.log("array vacio"); 
   return seleccionado; //devuelvo el auto seleciconado
 }
+//obtiene y devuelve el resumen del auto seleccionado (nombre, precio, colores, img..) 
 function resumenAutoSeleccionado(auto) {
   //desestructuro auto
   const {
@@ -72,15 +73,16 @@ EVENTOS (otros eventos para botones y modals)
 const btnConsultar = document.getElementById("consultar");
 
 //CONSULTAR
-//Agrego evento click para que abra el modal (tengo que agregarle que cargue cosas)
+//Agrego evento click para que abra el modal
 btnConsultar.onclick = function () {
   const autoSel = obtenerAutoSeleccionado(); 
   const autoResumen = resumenAutoSeleccionado(autoSel);
-  //console.log(autoResumen);
+
   modal.style.display = "block";    
 
   let padre = document.getElementById("modal-content");
   padre.innerHTML = "";
+
   let resumen = document.createElement("div");
   resumen.innerHTML =  
                       `<table id = "tabla-resumen">    
@@ -114,8 +116,8 @@ btnConsultar.onclick = function () {
                     </table> 
                      <div class="flex-container mt-5">                   
                         <button id="modal-cerrar" class="btn btn-outline btn-flex btn-secondary">Cerrar</button>
-                        <button id="modal-descargar" class="btn btn-outline btn-flex btn-primary">Descargar</button>                     
-                     </div>`                
+                        <button id="modal-descargar" class="btn btn-outline btn-flex btn-primary">Obtener PDF</button>                     
+                     </div>`               
                        
     //le creo los eventos click a los botones
     padre.appendChild(resumen);
@@ -125,7 +127,7 @@ btnConsultar.onclick = function () {
     });
 
     const aceptar = document.getElementById("modal-descargar");
-  aceptar.addEventListener('click', () => {
+    aceptar.addEventListener('click', () => {
     descargarPDF(autoResumen);
       modal.style.display = "none";
     });
@@ -141,32 +143,28 @@ window.onclick = function (event) {
 /**************************************************
 EVENTOS (otros eventos para botones y modals) - FIN
 **************************************************/
-
-
 /**************************************************
 IMPRESION PDF
 **************************************************/
-function descargarPDF(autoResumen) { 
-  
+function descargarPDF(autoResumen) {   
   window.jsPDF = window.jspdf.jsPDF;
   const doc = new jsPDF();
 
   let img = new Image();
 
-  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgColor}`; //asi funciona, se le pasa la ruta de la img
+  img.src = `${autoResumen.imgColor}`; //asi funciona, se le pasa la ruta de la img //PreEntrega3-Sanguinet/
   doc.addImage(img, 'JPEG', 157, 100, 40, 40); //addimage (img, x, y, width, height, alias, compresion, rotacion)
 
-  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgInterior}`; //asi funciona, se le pasa la ruta de la img
+  img.src = `${autoResumen.imgInterior}`; //asi funciona, se le pasa la ruta de la img //PreEntrega3-Sanguinet/
   doc.addImage(img, 'JPEG', 157, 145, 40, 40); 
 
-  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgPerfil}`; //asi funciona, se le pasa la ruta de la img
+  img.src = `${autoResumen.imgPerfil}`;  //PreEntrega3-Sanguinet/
   doc.addImage(img, 'JPEG', 15, 100, 137, 85); 
-
 
   let y = 15; //coordenada y de pdf
   let x = 15; //coordenada x de pdf
-  doc.setFontSize(25); //Si quiero cambiar el tamaño de fuente lo tengo que hacer antes de el text (y luego volver a cambiar en caso de que no quiera seguir con ese tamaño)
-  doc.text("AUDIX simulador", x, y);
+  doc.setFontSize(32); //Si quiero cambiar el tamaño de fuente lo tengo que hacer antes de el text (y luego volver a cambiar en caso de que no quiera seguir con ese tamaño)
+  doc.text("Simulador AUDIX", x, y);
  
   x += 10;
   y += 20;
@@ -187,8 +185,8 @@ function descargarPDF(autoResumen) {
 
   doc.line(15, 270, 200, 270); //line(x1, y1, x2, y2, style) dibuja linea
   let fecha = new Date();  
-  doc.setFontSize(12);
-  doc.text(fecha.toLocaleString(), 150, 280); 
+  doc.setFontSize(10);
+  doc.text(fecha.toLocaleString(), 160, 280); 
   doc.output('dataurlnewwindow'); //esto abre en una pestaña nueva
   //doc.save('table.pdf'); //esto lo guarda
 } 
