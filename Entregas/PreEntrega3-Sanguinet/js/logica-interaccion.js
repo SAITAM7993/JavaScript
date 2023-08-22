@@ -1,4 +1,5 @@
-import { autos } from "./main.js"; //importo la coleccion de autos
+import { autos } from "./main.js"; //importo la coleccion de 
+
 /**************************************************
 FUCNIONES
 **************************************************/
@@ -82,12 +83,14 @@ btnConsultar.onclick = function () {
   padre.innerHTML = "";
   let resumen = document.createElement("div");
   resumen.innerHTML =  
-                      `<table>                      
-                      <tr>
-                        <th>Categoría</th>
-                        <th>Seleccionado</th>
-                        <th>Precio</th>
-                      </tr>
+                      `<table id = "tabla-resumen">    
+                      <thead>                  
+                        <tr>
+                          <th>Categoría</th>
+                          <th>Seleccionado</th>
+                          <th>Precio</th>
+                        </tr>
+                      </thead>
                       <tr>
                         <td class="my-2">Modelo</td>
                         <td class="my-2">${autoResumen.nomModelo}</td>
@@ -111,7 +114,7 @@ btnConsultar.onclick = function () {
                     </table> 
                      <div class="flex-container mt-5">                   
                         <button id="modal-cerrar" class="btn btn-outline btn-flex btn-secondary">Cerrar</button>
-                        <button id="modal-aceptar" class="btn btn-outline btn-flex btn-primary">Aceptar</button>                     
+                        <button id="modal-descargar" class="btn btn-outline btn-flex btn-primary">Descargar</button>                     
                      </div>`                
                        
     //le creo los eventos click a los botones
@@ -121,7 +124,7 @@ btnConsultar.onclick = function () {
       modal.style.display = "none";
     });
 
-    const aceptar = document.getElementById("modal-aceptar");
+    const aceptar = document.getElementById("modal-descargar");
   aceptar.addEventListener('click', () => {
     descargarPDF(autoResumen);
       modal.style.display = "none";
@@ -144,28 +147,50 @@ EVENTOS (otros eventos para botones y modals) - FIN
 IMPRESION PDF
 **************************************************/
 function descargarPDF(autoResumen) { 
+  
   window.jsPDF = window.jspdf.jsPDF;
-  let doc = new jsPDF();
+  const doc = new jsPDF();
+
+  let img = new Image();
+
+  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgColor}`; //asi funciona, se le pasa la ruta de la img
+  doc.addImage(img, 'JPEG', 157, 100, 40, 40); //addimage (img, x, y, width, height, alias, compresion, rotacion)
+
+  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgInterior}`; //asi funciona, se le pasa la ruta de la img
+  doc.addImage(img, 'JPEG', 157, 145, 40, 40); 
+
+  img.src = `PreEntrega3-Sanguinet/${autoResumen.imgPerfil}`; //asi funciona, se le pasa la ruta de la img
+  doc.addImage(img, 'JPEG', 15, 100, 137, 85); 
+
+
   let y = 15; //coordenada y de pdf
   let x = 15; //coordenada x de pdf
+  doc.setFontSize(25); //Si quiero cambiar el tamaño de fuente lo tengo que hacer antes de el text (y luego volver a cambiar en caso de que no quiera seguir con ese tamaño)
   doc.text("AUDIX simulador", x, y);
-  doc.line(15, 20, 180, 20); //line(x1, y1, x2, y2, style)
+ 
   x += 10;
-  y += 15;
-  doc.text(`Modelo ${autoResumen.nomModelo}`, x, y); //.text(texto, x, y, opciones)
-  y += 10;
-  doc.text(`Color ${autoResumen.nomColor}`, x, y);
-  y += 10;
-  doc.text(`Interior ${autoResumen.nomInterior}`, x, y);
-  let imgData = `data:image/WEBP,${autoResumen.imgPerfil} `;
-  doc.addImage(imgData,"WEBP", 15, 20, 180, 20);
-  
-  /*doc.text(`Modelo ${autoResumen.nomModelo}`, x, y);
-  doc.text(`Modelo ${autoResumen.nomModelo}`, x, y);*/
- 
- 
- 
-  doc.save("a4.pdf");
-  
-}
+  y += 20;
+
+  doc.autoTable({
+    html: '#tabla-resumen', //si obtengo tabla de html le pongo el id de esta
+    startY: y, //donde comenzar la tabla eje Y
+    styles: {
+      fontSize: 14, //tamaño fuente
+      cellWidth: 'wrap' 
+    },
+    theme: 'striped', //tema de la tabla 'striped'|'grid'|'plain'
+    headStyles: { //estilos de cabezales
+      fillColor: [0, 0, 0]  //negro, solo sirve rgb
+    }
+
+  }); //toma la tabla del id que le diga, autotablela deja bien armada
+
+  doc.line(15, 270, 200, 270); //line(x1, y1, x2, y2, style) dibuja linea
+  let fecha = new Date();  
+  doc.setFontSize(12);
+  doc.text(fecha.toLocaleString(), 150, 280); 
+  doc.output('dataurlnewwindow'); //esto abre en una pestaña nueva
+  //doc.save('table.pdf'); //esto lo guarda
+} 
+
 
