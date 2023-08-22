@@ -152,13 +152,13 @@ function descargarPDF(autoResumen) {
 
   let img = new Image();
 
-  img.src = `${autoResumen.imgColor}`; //asi funciona, se le pasa la ruta de la img //PreEntrega3-Sanguinet/
+  img.src = `./PreEntrega3-Sanguinet/${autoResumen.imgColor}`; //asi funciona, se le pasa la ruta de la img
   doc.addImage(img, 'JPEG', 157, 100, 40, 40); //addimage (img, x, y, width, height, alias, compresion, rotacion)
 
-  img.src = `${autoResumen.imgInterior}`; //asi funciona, se le pasa la ruta de la img //PreEntrega3-Sanguinet/
+  img.src = `./PreEntrega3-Sanguinet/${autoResumen.imgInterior}`; //asi funciona, se le pasa la ruta de la img
   doc.addImage(img, 'JPEG', 157, 145, 40, 40); 
 
-  img.src = `${autoResumen.imgPerfil}`;  //PreEntrega3-Sanguinet/
+  img.src = `./PreEntrega3-Sanguinet/${autoResumen.imgPerfil}`; 
   doc.addImage(img, 'JPEG', 15, 100, 137, 85); 
 
   let y = 15; //coordenada y de pdf

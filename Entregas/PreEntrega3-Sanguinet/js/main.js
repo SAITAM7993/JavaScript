@@ -26,7 +26,7 @@ function cargarEventoModelos(autos) {
                     let src = "";
                     (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-perfil") && (src = item.colores[0].imgB);
                     (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-frente") && (src = item.colores[0].imgC);
-                    item.id === parseInt(opcModelo) && itemImg.setAttribute("src", `${src}`);           //./PreEntrega3-Sanguinet/
+                    item.id === parseInt(opcModelo) && itemImg.setAttribute("src", `./PreEntrega3-Sanguinet/${src}`);           
                 });     
             }
             cargarOpciones(autos, opcModelo);
@@ -50,8 +50,8 @@ function cargarEvento(categoria){
                 let modelo = sessionStorage.getItem("modelo");
                 let color = sessionStorage.getItem("color");               
                 padre = document.getElementById("car-preview");                
-                padre.innerHTML = `<img class="image-xl" src="${autos[modelo].colores[color].imgB}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-perfil">`; //./PreEntrega3-Sanguinet/
-                padre.innerHTML += `<img class="image-xl" src="${autos[modelo].colores[color].imgC}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-frente">`;//./PreEntrega3-Sanguinet/
+                padre.innerHTML = `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modelo].colores[color].imgB}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-perfil">`;
+                padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modelo].colores[color].imgC}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-frente">`;
             }
         });
     }
@@ -67,7 +67,7 @@ const cargarOpciones = (autos, modeloSel) => {
         autos.forEach((item) => {
             let modelo = document.createElement("label");
             modelo.innerHTML += `<input type="radio" name="model" value="${item.id}" id="inputModel${item.id}">
-                        <img class="image image-l" src="${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3 //./PreEntrega3-Sanguinet/
+                        <img class="image image-l" src="./PreEntrega3-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
             padre.appendChild(modelo);
         });
         sessionStorage.setItem("modelo", 0);
@@ -81,7 +81,7 @@ const cargarOpciones = (autos, modeloSel) => {
     autos[modeloSel].interiores.forEach((item) =>{
         let interior = document.createElement("label");
         interior.innerHTML += `<input type="radio" name="interior" value="${item.id}">
-                            <img class="image image-m" src="${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3 ./PreEntrega3-Sanguinet/
+                            <img class="image image-m" src="./PreEntrega3-Sanguinet/${item.imgA}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(interior);  
     });
 
@@ -91,14 +91,14 @@ const cargarOpciones = (autos, modeloSel) => {
     autos[modeloSel].colores.forEach((item) => { 
         let color = document.createElement("label");
         color.innerHTML += `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
-                            <img class="image image-s" src="${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3 //./PreEntrega3-Sanguinet/
+                            <img class="image image-s" src="./PreEntrega3-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(color);   
     });
    
     //CARGO CAR PREVIEW (img de la izq de perfil y frente)
     padre = document.getElementById("car-preview"); //como no creo un un tag y solo agrego img a este car preview no tengo que hacer un create element, solo le cambio el inner HTML        
-    padre.innerHTML = `<img class="image-xl" src="${autos[modeloSel].colores[0].imgB}" alt="${autos[modeloSel].colores[0].nombre}" id = "carPreview-perfil">`; //./PreEntrega3-Sanguinet/
-    padre.innerHTML += `<img class="image-xl" src="${autos[modeloSel].colores[0].imgC}" alt="${autos[modeloSel].colores[0].nombre}" id = "carPreview-frente">`; //./PreEntrega3-Sanguinet/
+    padre.innerHTML = `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modeloSel].colores[0].imgB}" alt="${autos[modeloSel].colores[0].nombre}" id = "carPreview-perfil">`;
+    padre.innerHTML += `<img class="image-xl" src="./PreEntrega3-Sanguinet/${autos[modeloSel].colores[0].imgC}" alt="${autos[modeloSel].colores[0].nombre}" id = "carPreview-frente">`;
 
     //cargo evento click a modelos interiores y colores 
     cargarEvento("interior");
