@@ -1,0 +1,85 @@
+/** CREA UNA VARIACION DE COLOR PARA BOTONES**/
+@mixin btnColorVariation($name, $color, $color-hover, $color-contrast){
+    &.btn-#{$name}{
+        --#{$prefix}-btn-bg: #{$color};
+        --#{$prefix}-btn-color: #{$color-contrast};
+        --#{$prefix}-btn-hover-bg: #{$color-hover};
+        --#{$prefix}-btn-hover-color: #{$color-contrast};
+
+        &.btn-outline {
+            --#{$prefix}-btn-bg: transparent;
+            --#{$prefix}-btn-color: #{$color};
+            --#{$prefix}-btn-hover-bg: #{$color};
+            --#{$prefix}-btn-hover-color: #{$color-contrast};
+            --#{$prefix}-btn-border-color: #{$color};
+        }
+
+        &.btn-plain {
+            --#{$prefix}-btn-bg: transparent;
+            --#{$prefix}-btn-color: #{$color};
+            --#{$prefix}-btn-hover-bg: #{$color};
+        }
+    }
+}
+
+/**CREA MEDIA QUERY BREAKPOINTS**/
+@mixin break-up($breakpoint){
+    @if map-has-key($breakpoints, $breakpoint){
+        @media(min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+
+    }@else{
+        
+        @warn "`#{$breakpoint}`no es un breakppint valido. Intenta con: #{map-keys($breakpoints)}";
+    }
+}
+
+@mixin sm(){
+    @include break-up(sm){
+        @content;
+    }   
+}
+
+@mixin md() {
+    @include break-up(md) {
+        @content;
+    }
+}
+
+@mixin lg() {
+    @include break-up(lg) {
+        @content;
+    }
+}
+
+@mixin xl() {
+    @include break-up(xl) {
+        @content;
+    }
+}
+
+
+@mixin generate-spacing($prop, $short) {
+
+    @each $spaceKey,
+    $spaceValue in $spacing {
+
+        @each $dirKey,
+        $dirs in $directions {
+            .#{$short}#{$dirKey}-#{$spaceKey} {
+                @each $dir in $dirs {
+                    #{$prop}-#{$dir}: $spaceValue;
+                }
+            }
+        }
+
+    }
+}
+//para cambiar el logo por ejemplo, segun el tema
+@mixin theme($theme){
+    @at-root #{selector-nest(':root[data-theme=#{$theme}]', &)}{
+        @content;
+    }
+}
+

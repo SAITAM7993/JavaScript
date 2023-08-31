@@ -1,0 +1,35 @@
+$select-bg-color: var(--#{$prefix}-select-bg-color, $color-slate-50);
+$select-hover-color: var(--#{$prefix}-select-hover-color, white);
+$select-text-color: var(--#{$prefix}-select-text-color, $body-text-color);
+$select-border-color: var(--#{$prefix}-select-border-color, $color-slate-400);
+$select-focus-color: var(--#{$prefix}-select-focus-color, $color-slate-500);
+
+.select{
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 8px 16px;
+    font-size: $fs-2;
+    appearance: none;
+    transition: all .2s ease;
+    line-height: $leading-4n;
+    user-select: none;
+    border-radius: 8px;
+    padding-right: 32px;
+
+    background-size: 24px auto; 
+    background-image: $chevron;
+    background-position: calc(100% - 4px) center;
+
+    color:  $select-text-color;
+    border-color: $select-border-color;
+    background-color:  $select-bg-color;
+
+    &:hover{
+        background-color: $select-hover-color;
+    }
+    &:focus{
+        outline:0;
+        box-shadow: 0 0 0 1px $select-focus-color;
+        border-color: $select-border-color;
+    }
+}
