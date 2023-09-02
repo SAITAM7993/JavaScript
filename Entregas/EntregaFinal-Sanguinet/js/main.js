@@ -16,18 +16,19 @@ const obtenerAutosFetch = async () => {
 export function obtenerAutos(){
     obtenerAutosFetch()
         .then(() => {
-            const autos = JSON.parse(localStorage.getItem("autos")); //obtengo la lista de autos del local storage   
-            if (sessionStorage.getItem("modelo")) {                
-                cargarOpciones(autos, 0); //si le paso algo diferente a 0 rompe
-                cargarEventoModelos(autos);
-                console.log(sessionStorage.getItem("modelo"));
+            //const autos = JSON.parse(localStorage.getItem("autos")); //obtengo la lista de autos del local storage  
+            let modeloEnSession = sessionStorage.getItem("modelo");
+            if (modeloEnSession) {                
+                cargarOpciones(modeloEnSession ,"inicial"); //si le paso algo diferente a 0 rompe
+                cargarEventoModelos();
+               
                 
             } else {
-                
-                cargarOpciones(autos, 0); //cargo todas las opciones
-                cargarEventoModelos(autos); //cargo los eventos 
-                
-            }           
+               
+                cargarOpciones(0, "inicial"); //cargo todas las opciones
+                cargarEventoModelos(); //cargo los eventos 
+               
+            }    
         });
 }
 
@@ -35,8 +36,8 @@ export function obtenerAutos(){
 FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS 
 **************************************************/
 //FUNCION PARA CARGAR evento click en las img de modelo
-function cargarEventoModelos(autos) {
-    
+function cargarEventoModelos() {
+    const autos = JSON.parse(localStorage.getItem("autos")); 
     //obtengo el html que contiene los modelos
     let listaModelos = document.getElementById("modelsContainer");
     //obtengo las img/input del html que contiene los modelos
@@ -44,10 +45,12 @@ function cargarEventoModelos(autos) {
     for (let item of input) { //recorro las img/input para agregarle un evento        
         item.addEventListener('click', () => {             
             let opcModelo = item.value //obtengo el valor numerico
+            console.log(item.value);
+
             //tomo el html que contiene las img del preview
             let listaPreview = document.getElementById("car-preview");
             //tomo solo las img
-            let imgPreview = listaPreview.getElementsByTagName("img");    
+            let imgPreview = listaPreview.getElementsByTagName("input");    
             //recorro los tags img
             for (let itemImg of imgPreview) {   
                 //le cambio el atributo src 
@@ -62,7 +65,7 @@ function cargarEventoModelos(autos) {
                     item.id === parseInt(opcModelo) && itemImg.setAttribute("src", `./EntregaFinal-Sanguinet/${src}`);           
                 });     
             }
-            cargarOpciones(autos, opcModelo);
+            cargarOpciones(opcModelo);
             //guardo lo seleccionado en session para luego poder usarlo en el calulcar precio! me evito pelear con los checked de cada opcion
             sessionStorage.setItem("modelo", opcModelo);
             sessionStorage.setItem("color", 0); //cuando cargo los colores del modelo lo seteo a 0 por defecto
@@ -73,12 +76,15 @@ function cargarEventoModelos(autos) {
 };
 
 //CARGAR evento interior o color, le paso categoría (TIENE QUE SER EXACTO como el container  - palabra container ej interior o color), es diferente a modelos porque es mas sencillo
-function cargarEvento(categoria, autos){ 
+function cargarEvento(categoria){ 
+    const autos = JSON.parse(localStorage.getItem("autos")); 
     let padre = document.getElementById(categoria+"Container");
     let input = padre.getElementsByTagName("input");  //obtengo los inputs de colores
+
     for (let item of input) {        
-        item.addEventListener('click', () => {           
-            sessionStorage.setItem(categoria, item.value);           
+        item.addEventListener('click', () => {        
+            
+            sessionStorage.setItem(categoria, item.value);  
             if (categoria === "color") { //no uso operador avanzado porque es mucho codigo, 
                 //esto es para setear las IMG del preview del costado izquierdo (perfil y frente)       
                 let modelo = sessionStorage.getItem("modelo");
@@ -91,16 +97,19 @@ function cargarEvento(categoria, autos){
     }
 }
 
-const cargarOpciones = (autos, modeloSel) => {       
+function cargarOpciones(modeloSel, carga) {      //inicial es si es la carga inicial
+    const autos = JSON.parse(localStorage.getItem("autos"));   
     //PRE CARGO INTERIORES    
     //obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
     let padre = document.getElementById("modelsContainer");  
     //padre.innerHTML = '';
-    if (modeloSel === 0) { //por alguna razon esto funciona solo si esta dentro del if..
+    if (carga === "inicial"){ //por alguna razon esto funciona solo si esta dentro del if..
+        console.log("entro en mod sel 0")
         padre.innerHTML = '';
         //solo si el modelo seleccionado es el 0 vuelvo a cargar los modelos (para intentar optimizar la carga)
         //CARGO MODELOS        
         autos.forEach((item) => {
+            console.log("agrego"+item.id);
             let modelo = document.createElement("label");
             modelo.innerHTML += `<input type="radio" name="model" value="${item.id}" id="inputModel${item.id}">
                         <img class="image image-l" src="./EntregaFinal-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
@@ -108,9 +117,7 @@ const cargarOpciones = (autos, modeloSel) => {
         });
        
   }
-
-    sessionStorage.setItem("modelo", 0);
-       sessionStorage.setItem("color", 0);
+    sessionStorage.setItem("color", 0);
     sessionStorage.setItem("interior", 0);    
     
     //CARGO INTERIORES
@@ -139,8 +146,8 @@ const cargarOpciones = (autos, modeloSel) => {
     padre.innerHTML += `<img class="image-xl" src="./EntregaFinal-Sanguinet/${autos[modeloSel].colores[0].imgC}" alt="${autos[modeloSel].colores[0].nombre}" id = "carPreview-frente">`;
 
     //cargo evento click a modelos interiores y colores 
-    cargarEvento("interior", autos);
-    cargarEvento("color", autos);
+    cargarEvento("interior");
+    cargarEvento("color");
 };
 
 //LIMPIA todo lo seleccionado para luego precargar
