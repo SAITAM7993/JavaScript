@@ -110,9 +110,6 @@ function descargarPDF(autoResumen) {
   doc.output('dataurlnewwindow'); //esto abre en una pestaña nueva
   //doc.save('table.pdf'); //esto lo guarda
 } 
-
-
-
 /**************************************************
 FUCNIONES - FIN
 **************************************************/

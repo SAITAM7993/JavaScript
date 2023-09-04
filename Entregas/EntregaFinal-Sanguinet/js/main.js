@@ -15,19 +15,14 @@ const obtenerAutosFetch = async () => {
 }
 export function obtenerAutos(){
     obtenerAutosFetch()
-        .then(() => {
-            //const autos = JSON.parse(localStorage.getItem("autos")); //obtengo la lista de autos del local storage  
+        .then(() => {           
             let modeloEnSession = sessionStorage.getItem("modelo");
             if (modeloEnSession) {                
-                cargarOpciones(modeloEnSession ,"inicial"); //si le paso algo diferente a 0 rompe
-                cargarEventoModelos();
-               
-                
-            } else {
-               
-                cargarOpciones(0, "inicial"); //cargo todas las opciones
-                cargarEventoModelos(); //cargo los eventos 
-               
+                cargarOpciones(modeloEnSession ,"inicial"); 
+                cargarEventoModelos();               
+            } else {               
+                cargarOpciones(0); //cargo todas las opciones
+                cargarEventoModelos(); //cargo los eventos                
             }    
         });
 }
@@ -36,32 +31,35 @@ export function obtenerAutos(){
 FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS 
 **************************************************/
 //FUNCION PARA CARGAR evento click en las img de modelo
-function cargarEventoModelos() {
+function cargarEventoModelos() { //carga indica si es "inicial o no", si es inicial significa que es cuando se entra a la pagina
     const autos = JSON.parse(localStorage.getItem("autos")); 
     //obtengo el html que contiene los modelos
     let listaModelos = document.getElementById("modelsContainer");
     //obtengo las img/input del html que contiene los modelos
-    let input = listaModelos.getElementsByTagName("input");    
+    let input = listaModelos.getElementsByTagName("input");  
+    
+    //let colorEnSession = sessionStorage.getItem("color");
+    //let interiorEnSession = sessionStorage.getItem("interior");
+    
     for (let item of input) { //recorro las img/input para agregarle un evento        
-        item.addEventListener('click', () => {             
-            let opcModelo = item.value //obtengo el valor numerico
-            console.log(item.value);
+        item.addEventListener('click', () => {         
+            let opcModelo = item.value //obtengo el valor numerico  
 
             //tomo el html que contiene las img del preview
             let listaPreview = document.getElementById("car-preview");
             //tomo solo las img
-            let imgPreview = listaPreview.getElementsByTagName("input");    
+            let imgPreview = listaPreview.getElementsByTagName("input");             
             //recorro los tags img
-            for (let itemImg of imgPreview) {   
-                //le cambio el atributo src 
-                
+            for (let itemImg of imgPreview) {  
+               
+                //le cambio el atributo src                 
                 autos.forEach((item) => { //recorro los autos
                     //si el modelo del auto coincide con el seleccionado Y el item que estoy es el de perfil asigno la img de perfil (src)
                     //si el modelo del auto coincide con el seleccionado Y el item que estoy es el de perfil asigno la img de frente (src)
                     //luego si el modelo del auto coincide con el seleccionado le seteo el src                   
                     let src = "";
-                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-perfil") && (src = item.colores[0].imgB);
-                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-frente") && (src = item.colores[0].imgC);
+                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-perfil") && (src = item.colores[colorEnSession].imgB);
+                    (item.id === parseInt(opcModelo) && itemImg.id === "carPreview-frente") && (src = item.colores[colorEnSession].imgC);
                     item.id === parseInt(opcModelo) && itemImg.setAttribute("src", `./EntregaFinal-Sanguinet/${src}`);           
                 });     
             }
@@ -76,25 +74,23 @@ function cargarEventoModelos() {
 };
 
 //CARGAR evento interior o color, le paso categoría (TIENE QUE SER EXACTO como el container  - palabra container ej interior o color), es diferente a modelos porque es mas sencillo
-function cargarEvento(categoria){ 
-    const autos = JSON.parse(localStorage.getItem("autos")); 
-    let padre = document.getElementById(categoria+"Container");
-    let input = padre.getElementsByTagName("input");  //obtengo los inputs de colores
-
-    for (let item of input) {        
-        item.addEventListener('click', () => {        
-            
-            sessionStorage.setItem(categoria, item.value);  
+function cargarEvento(categoria) {
+    const autos = JSON.parse(localStorage.getItem("autos"));
+    let padre = document.getElementById(categoria + "Container");
+    let input = padre.getElementsByTagName("input");  //obtengo los inputs de colores   
+    for (let item of input) {
+        item.addEventListener('click', () => {
+            sessionStorage.setItem(categoria, item.value);
             if (categoria === "color") { //no uso operador avanzado porque es mucho codigo, 
                 //esto es para setear las IMG del preview del costado izquierdo (perfil y frente)       
                 let modelo = sessionStorage.getItem("modelo");
-                let color = sessionStorage.getItem("color");                
-                padre = document.getElementById("car-preview");                
+                let color = sessionStorage.getItem("color");
+                padre = document.getElementById("car-preview");
                 padre.innerHTML = `<img class="image-xl" src="./EntregaFinal-Sanguinet/${autos[modelo].colores[color].imgB}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-perfil">`;
                 padre.innerHTML += `<img class="image-xl" src="./EntregaFinal-Sanguinet/${autos[modelo].colores[color].imgC}" alt="${autos[modelo].colores[color].nombre}" id = "carPreview-frente">`;
             }
         });
-    }
+    }      
 }
 
 function cargarOpciones(modeloSel, carga) {      //inicial es si es la carga inicial
@@ -103,13 +99,11 @@ function cargarOpciones(modeloSel, carga) {      //inicial es si es la carga ini
     //obtengo el ID del padre donde voy a agregar los modelos (es un div con id modelsContainer)
     let padre = document.getElementById("modelsContainer");  
     //padre.innerHTML = '';
-    if (carga === "inicial"){ //por alguna razon esto funciona solo si esta dentro del if..
-        console.log("entro en mod sel 0")
+    if (carga === "inicial"){ //por alguna razon esto funciona solo si esta dentro del if..       
         padre.innerHTML = '';
         //solo si el modelo seleccionado es el 0 vuelvo a cargar los modelos (para intentar optimizar la carga)
         //CARGO MODELOS        
-        autos.forEach((item) => {
-            console.log("agrego"+item.id);
+        autos.forEach((item) => {           
             let modelo = document.createElement("label");
             modelo.innerHTML += `<input type="radio" name="model" value="${item.id}" id="inputModel${item.id}">
                         <img class="image image-l" src="./EntregaFinal-Sanguinet/${item.colores[0].imgB}" id="imgModel${item.id}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
@@ -138,7 +132,7 @@ function cargarOpciones(modeloSel, carga) {      //inicial es si es la carga ini
         color.innerHTML += `<input type="radio" name="color" id ="${item.id}" value="${item.id}">
                             <img class="image image-s" src="./EntregaFinal-Sanguinet/${item.imgA}" alt="${item.nombre}">`;//por alguna razon no sabe en donde estoy parado y le tengo que agregar que entre a  la carpeta de preentrega3
         padre.appendChild(color);   
-    });
+    });   
    
     //CARGO CAR PREVIEW (img de la izq de perfil y frente)
     padre = document.getElementById("car-preview"); //como no creo un un tag y solo agrego img a este car preview no tengo que hacer un create element, solo le cambio el inner HTML        
@@ -177,13 +171,11 @@ btnRestablecer.onclick = function () {
 FUNCIONES PARA CARGAR DOM, LIMPIAR, AGREGAR EVENTOS - FIN 
 **************************************************/
 
-
 /**************************************************
 CARGA DE DOM
 **************************************************/
 
-obtenerAutos();
-   
+obtenerAutos();  
 
 
 /**************************************************
