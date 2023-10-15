@@ -14,6 +14,7 @@ const obtenerAutosFetch = async () => {
     console.log(error);
   }
 };
+
 export function obtenerAutos() {
   obtenerAutosFetch().then(() => {
     let modeloEnSession = sessionStorage.getItem("modelo");
@@ -39,9 +40,6 @@ function cargarEventoModelos() {
   //obtengo las img/input del html que contiene los modelos
   let input = listaModelos.getElementsByTagName("input");
 
-  //let colorEnSession = sessionStorage.getItem("color");
-  //let interiorEnSession = sessionStorage.getItem("interior");
-
   for (let item of input) {
     //recorro las img/input para agregarle un evento
     item.addEventListener("click", () => {
@@ -62,10 +60,10 @@ function cargarEventoModelos() {
           let src = "";
           item.id === parseInt(opcModelo) &&
             itemImg.id === "carPreview-perfil" &&
-            (src = item.colores[colorEnSession].imgB);
+            (src = item.colores[0].imgB);
           item.id === parseInt(opcModelo) &&
             itemImg.id === "carPreview-frente" &&
-            (src = item.colores[colorEnSession].imgC);
+            (src = item.colores[0].imgC);
           item.id === parseInt(opcModelo) &&
             itemImg.setAttribute("src", `./EntregaFinal-Sanguinet/${src}`);
         });
@@ -111,6 +109,7 @@ function cargarOpciones(modeloSel, carga) {
     //por alguna razon esto funciona solo si esta dentro del if..
     padre.innerHTML = "";
     //solo si el modelo seleccionado es el 0 vuelvo a cargar los modelos (para intentar optimizar la carga)
+
     //CARGO MODELOS
     autos.forEach((item) => {
       let modelo = document.createElement("label");
@@ -119,8 +118,6 @@ function cargarOpciones(modeloSel, carga) {
       padre.appendChild(modelo);
     });
   }
-  sessionStorage.setItem("color", 0);
-  sessionStorage.setItem("interior", 0);
 
   //CARGO INTERIORES
   padre = document.getElementById("interiorContainer");

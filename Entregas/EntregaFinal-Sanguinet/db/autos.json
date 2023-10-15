@@ -1,362 +1,362 @@
 [
-    {
+  {
+    "id": 0,
+    "nombre": "E-TRON R8",
+    "precio": 60000,
+    "colores": [
+      {
         "id": 0,
-        "nombre": "E-TRON R8",
-        "precio": 60000,
-        "colores":[
-        {
-            "id": 0,
-            "imgB": "../media/cars/e_tron_R8/perfil/1.webp",
-            "imgA": "../media/cars/e_tron_R8/colores/1.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/1.webp",
-            "nombre": "Blanco",
-            "precio": 1000
-        },
-        {
-            "id": 1,
-            "imgA": "../media/cars/e_tron_R8/colores/2.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/2.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/2.webp", 
-            "nombre": "Negro",
-            "precio": 2000
-        },
-        {
-            "id": 2,
-            "imgA": "../media/cars/e_tron_R8/colores/3.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/3.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/3.webp",
-            "nombre": "Azul perla",
-            "precio": 3000
-        },
-        {
-            "id": 3,
-            "imgA": "../media/cars/e_tron_R8/colores/4.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/4.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/4.webp",
-            "nombre": "Rojo",
-            "precio": 4000
-        },
-        {
-            "id": 4,
-            "imgA": "../media/cars/e_tron_R8/colores/5.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/5.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/5.webp",
-            "nombre": "Crema",
-            "precio": 5000
-        },
-        {
-            "id": 5,
-            "imgA": "../media/cars/e_tron_R8/colores/6.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/6.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/6.webp",
-            "nombre": "Verde",
-            "precio": 10000
-        },
-        {
-            "id": 6,
-            "imgA": "../media/cars/e_tron_R8/colores/7.webp",
-            "imgB": "../media/cars/e_tron_R8/perfil/7.webp",
-            "imgC": "../media/cars/e_tron_R8/frente/7.webp",
-            "nombre": "Vino",
-            "precio": 20000
-        }
-        ],
-        
-        "interiores": [
-            {
-                "id": 0,
-                "imgA": "../media/cars/e_tron_R8/interior/A.webp",            
-                "nombre": "Deportivo bi-tono rojo",
-                "precio": 1000
-            },
-             {
-                "id": 1,
-                "imgA": "../media/cars/e_tron_R8/interior/B.webp",            
-                "nombre": "Clásico bi-tono marrón",
-                "precio": 2000
-            },
-              {
-                "id": 2,
-                "imgA": "../media/cars/e_tron_R8/interior/C.webp",            
-                "nombre": "Clásico negro",
-                "precio": 3000
-            },
-               {
-                "id": 3,
-                "imgA": "../media/cars/e_tron_R8/interior/D.webp",            
-                "nombre": "Clásico bi-tono gris",
-                "precio": 4000
-            }
-        ]        
-    },
-    {
+        "imgB": "../media/cars/e_tron_R8/perfil/1.webp",
+        "imgA": "../media/cars/e_tron_R8/colores/1.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/1.webp",
+        "nombre": "Blanco",
+        "precio": 1000
+      },
+      {
         "id": 1,
-        "nombre": "R8",
-        "precio": 80000,
-        "colores":[
-        {
-            "id": 0,
-            "imgA": "../media/cars/r8/colores/1.webp",
-            "imgB": "../media/cars/r8/perfil/1.webp",
-            "imgC": "../media/cars/r8/frente/1.webp",
-            "nombre": "Blanco",
-            "precio": 1500
-        },
-        {
-            "id": 1,
-            "imgA": "../media/cars/r8/colores/2.webp",
-            "imgB": "../media/cars/r8/perfil/2.webp",
-            "imgC": "../media/cars/r8/frente/2.webp", 
-            "nombre": "Negro",
-            "precio": 2500
-        },
-        {
-            "id": 2,
-            "imgA": "../media/cars/r8/colores/3.webp",
-            "imgB": "../media/cars/r8/perfil/3.webp",
-            "imgC": "../media/cars/r8/frente/3.webp",
-            "nombre": "Gris",
-            "precio": 3500
-        },
-        {
-            "id": 3,
-            "imgA": "../media/cars/r8/colores/4.webp",
-            "imgB": "../media/cars/r8/perfil/4.webp",
-            "imgC": "../media/cars/r8/frente/4.webp",
-            "nombre": "Rojo",
-            "precio": 4500
-        },
-        {
-            "id": 4,
-            "imgA": "../media/cars/r8/colores/5.webp",
-            "imgB": "../media/cars/r8/perfil/5.webp",
-            "imgC": "../media/cars/r8/frente/5.webp",
-            "nombre": "Celeste",
-            "precio": 5500
-        },
-        {
-            "id": 5,
-            "imgA": "../media/cars/r8/colores/6.webp",
-            "imgB": "../media/cars/r8/perfil/6.webp",
-            "imgC": "../media/cars/r8/frente/6.webp",
-            "nombre": "Amarillo deportivo",
-            "precio": 10500
-        },
-        {
-            "id": 6,
-            "imgA": "../media/cars/r8/colores/7.webp",
-            "imgB": "../media/cars/r8/perfil/7.webp",
-            "imgC": "../media/cars/r8/frente/7.webp",
-            "nombre": "Verde deportivo",
-            "precio": 20500
-        }
-        ],
-        
-        "interiores": [
-            {
-                "id": 0,
-                "imgA": "../media/cars/r8/interior/A.webp",            
-                "nombre": "Deportivo bi-tono blanco",
-                "precio": 5000
-            },
-             {
-                "id": 1,
-                "imgA": "../media/cars/r8/interior/B.webp",            
-                "nombre": "Deportivo negro",
-                "precio": 3000
-            },
-              {
-                "id": 2,
-                "imgA": "../media/cars/r8/interior/C.webp",            
-                "nombre": "Clásico bi-tono blanco",
-                "precio": 3000
-            },
-               {
-                "id": 3,
-                "imgA": "../media/cars/r8/interior/D.webp",            
-                "nombre": "Clásico bi-tono blanco con detalles",
-                "precio": 4000
-            }
-        ]        
-    },
-    {
+        "imgA": "../media/cars/e_tron_R8/colores/2.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/2.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/2.webp",
+        "nombre": "Negro",
+        "precio": 2000
+      },
+      {
         "id": 2,
-        "nombre": "RS3 SEDAN",
-        "precio": 20000,
-        "colores":[
-        {
-            "id": 0,
-            "imgA": "../media/cars/rs3_sedan/colores/1.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/1.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/1.webp",
-            "nombre": "Blanco",
-            "precio": 1000
-        },
-        {
-            "id": 1,
-            "imgA": "../media/cars/rs3_sedan/colores/2.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/2.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/2.webp", 
-            "nombre": "Gris metalizado",
-            "precio": 5000
-        },
-        {
-            "id": 2,
-            "imgA": "../media/cars/rs3_sedan/colores/3.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/3.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/3.webp",
-            "nombre": "Negro",
-            "precio": 3000
-        },
-        {
-            "id": 3,
-            "imgA": "../media/cars/rs3_sedan/colores/4.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/4.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/4.webp",
-            "nombre": "Gris",
-            "precio": 4000
-        },
-        {
-            "id": 4,
-            "imgA": "../media/cars/rs3_sedan/colores/5.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/5.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/5.webp",
-            "nombre": "Amarillo",
-            "precio": 5000
-        },
-        {
-            "id": 5,
-            "imgA": "../media/cars/rs3_sedan/colores/6.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/6.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/6.webp",
-            "nombre": "Naranja deportivo",
-            "precio": 9000
-        },
-        {
-            "id": 6,
-            "imgA": "../media/cars/rs3_sedan/colores/7.webp",
-            "imgB": "../media/cars/rs3_sedan/perfil/7.webp",
-            "imgC": "../media/cars/rs3_sedan/frente/7.webp",
-            "nombre": "Rojo",
-            "precio": 10000
-        }
-        ],
-        
-        "interiores": [
-            {
-                "id": 0,
-                "imgA": "../media/cars/rs3_sedan/interior/A.webp",            
-                "nombre": "Deportivo negro",
-                "precio": 1000
-            },
-            {
-                "id": 1,
-                "imgA": "../media/cars/rs3_sedan/interior/B.webp",            
-                "nombre": "Clásico negro",
-                "precio": 2000
-            },
-            {
-                "id": 2,
-                "imgA": "../media/cars/rs3_sedan/interior/C.webp",            
-                "nombre": "Clásico bi-tono",
-                "precio": 3000
-            },
-               {
-                "id": 3,
-                "imgA": "../media/cars/rs3_sedan/interior/D.webp",            
-                "nombre": "Clásico bi-tono detalles en rojo",
-                "precio": 4000
-            }
-        ]        
-    },
-    {
+        "imgA": "../media/cars/e_tron_R8/colores/3.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/3.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/3.webp",
+        "nombre": "Azul perla",
+        "precio": 3000
+      },
+      {
         "id": 3,
-        "nombre": "S3 SPORTBACK TFSI",
-        "precio": 25000,
-        "colores":[
-        {
-            "id": 0,
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/1.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/1.webp",
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/1.webp",
-            "nombre": "Blanco",
-            "precio": 1000
-        },
-        {
-            "id": 1,
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/2.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/2.webp", 
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/2.webp",
-            "nombre": "Gris",
-            "precio": 2000
-        },
-        {
-            "id": 2,
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/3.webp",
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/3.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/3.webp",
-            "nombre": "Negro",
-            "precio": 3000
-        },
-        {
-            "id": 3,
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/4.webp",
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/4.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/4.webp",
-            "nombre": "Azul",
-            "precio": 4000
-        },
-        {
-            "id": 4,
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/5.webp",
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/5.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/5.webp",
-            "nombre": "Amarillo",
-            "precio": 5000
-        },
-        {
-            "id": 5,
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/6.webp",
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/6.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/6.webp",
-            "nombre": "Rojo",
-            "precio": 90000
-        },
-        {
-            "id": 6,
-            "imgA": "../media/cars/s3_sportback_tfsi/colores/7.webp",
-            "imgB": "../media/cars/s3_sportback_tfsi/perfil/7.webp",
-            "imgC": "../media/cars/s3_sportback_tfsi/frente/7.webp",
-            "nombre": "Violeta",
-            "precio": 12000
-        }
-        ],
-        
-        "interiores": [
-            {
-                "id": 0,
-                "imgA": "../media/cars/s3_sportback_tfsi/interior/A.webp",            
-                "nombre": "Deportivo negro",
-                "precio": 1000
-            },
-            {
-                "id": 1,
-                "imgA": "../media/cars/s3_sportback_tfsi/interior/B.webp",            
-                "nombre": "Clásico negro",
-                "precio": 1200
-            },
-            {
-                "id": 2,
-                "imgA": "../media/cars/s3_sportback_tfsi/interior/C.webp",            
-                "nombre": "Clásico bi-tono con detalles en rojo",
-                "precio": 1500
-            },
-            {
-                "id": 3,
-                "imgA": "../media/cars/s3_sportback_tfsi/interior/D.webp",            
-                "nombre": "Clásico bi-tono liso",
-                "precio": 2000
-            }
-        ]        
-    }
+        "imgA": "../media/cars/e_tron_R8/colores/4.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/4.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/4.webp",
+        "nombre": "Rojo",
+        "precio": 4000
+      },
+      {
+        "id": 4,
+        "imgA": "../media/cars/e_tron_R8/colores/5.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/5.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/5.webp",
+        "nombre": "Crema",
+        "precio": 5000
+      },
+      {
+        "id": 5,
+        "imgA": "../media/cars/e_tron_R8/colores/6.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/6.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/6.webp",
+        "nombre": "Verde",
+        "precio": 10000
+      },
+      {
+        "id": 6,
+        "imgA": "../media/cars/e_tron_R8/colores/7.webp",
+        "imgB": "../media/cars/e_tron_R8/perfil/7.webp",
+        "imgC": "../media/cars/e_tron_R8/frente/7.webp",
+        "nombre": "Vino",
+        "precio": 20000
+      }
+    ],
+
+    "interiores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/e_tron_R8/interior/A.webp",
+        "nombre": "Deportivo bi-tono rojo",
+        "precio": 1000
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/e_tron_R8/interior/B.webp",
+        "nombre": "Clásico bi-tono marrón",
+        "precio": 2000
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/e_tron_R8/interior/C.webp",
+        "nombre": "Clásico negro",
+        "precio": 3000
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/e_tron_R8/interior/D.webp",
+        "nombre": "Clásico bi-tono gris",
+        "precio": 4000
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "nombre": "R8",
+    "precio": 80000,
+    "colores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/r8/colores/1.webp",
+        "imgB": "../media/cars/r8/perfil/1.webp",
+        "imgC": "../media/cars/r8/frente/1.webp",
+        "nombre": "Blanco",
+        "precio": 1500
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/r8/colores/2.webp",
+        "imgB": "../media/cars/r8/perfil/2.webp",
+        "imgC": "../media/cars/r8/frente/2.webp",
+        "nombre": "Negro",
+        "precio": 2500
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/r8/colores/3.webp",
+        "imgB": "../media/cars/r8/perfil/3.webp",
+        "imgC": "../media/cars/r8/frente/3.webp",
+        "nombre": "Gris",
+        "precio": 3500
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/r8/colores/4.webp",
+        "imgB": "../media/cars/r8/perfil/4.webp",
+        "imgC": "../media/cars/r8/frente/4.webp",
+        "nombre": "Rojo",
+        "precio": 4500
+      },
+      {
+        "id": 4,
+        "imgA": "../media/cars/r8/colores/5.webp",
+        "imgB": "../media/cars/r8/perfil/5.webp",
+        "imgC": "../media/cars/r8/frente/5.webp",
+        "nombre": "Celeste",
+        "precio": 5500
+      },
+      {
+        "id": 5,
+        "imgA": "../media/cars/r8/colores/6.webp",
+        "imgB": "../media/cars/r8/perfil/6.webp",
+        "imgC": "../media/cars/r8/frente/6.webp",
+        "nombre": "Amarillo deportivo",
+        "precio": 10500
+      },
+      {
+        "id": 6,
+        "imgA": "../media/cars/r8/colores/7.webp",
+        "imgB": "../media/cars/r8/perfil/7.webp",
+        "imgC": "../media/cars/r8/frente/7.webp",
+        "nombre": "Verde deportivo",
+        "precio": 20500
+      }
+    ],
+
+    "interiores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/r8/interior/A.webp",
+        "nombre": "Deportivo bi-tono blanco",
+        "precio": 5000
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/r8/interior/B.webp",
+        "nombre": "Deportivo negro",
+        "precio": 3000
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/r8/interior/C.webp",
+        "nombre": "Clásico bi-tono blanco",
+        "precio": 3000
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/r8/interior/D.webp",
+        "nombre": "Clásico bi-tono blanco con detalles",
+        "precio": 4000
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "RS3 SEDAN",
+    "precio": 20000,
+    "colores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/rs3_sedan/colores/1.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/1.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/1.webp",
+        "nombre": "Blanco",
+        "precio": 1000
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/rs3_sedan/colores/2.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/2.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/2.webp",
+        "nombre": "Gris metalizado",
+        "precio": 5000
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/rs3_sedan/colores/3.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/3.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/3.webp",
+        "nombre": "Negro",
+        "precio": 3000
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/rs3_sedan/colores/4.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/4.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/4.webp",
+        "nombre": "Gris",
+        "precio": 4000
+      },
+      {
+        "id": 4,
+        "imgA": "../media/cars/rs3_sedan/colores/5.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/5.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/5.webp",
+        "nombre": "Amarillo",
+        "precio": 5000
+      },
+      {
+        "id": 5,
+        "imgA": "../media/cars/rs3_sedan/colores/6.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/6.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/6.webp",
+        "nombre": "Naranja deportivo",
+        "precio": 9000
+      },
+      {
+        "id": 6,
+        "imgA": "../media/cars/rs3_sedan/colores/7.webp",
+        "imgB": "../media/cars/rs3_sedan/perfil/7.webp",
+        "imgC": "../media/cars/rs3_sedan/frente/7.webp",
+        "nombre": "Rojo",
+        "precio": 10000
+      }
+    ],
+
+    "interiores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/rs3_sedan/interior/A.webp",
+        "nombre": "Deportivo negro",
+        "precio": 1000
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/rs3_sedan/interior/B.webp",
+        "nombre": "Clásico negro",
+        "precio": 2000
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/rs3_sedan/interior/C.webp",
+        "nombre": "Clásico bi-tono",
+        "precio": 3000
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/rs3_sedan/interior/D.webp",
+        "nombre": "Clásico bi-tono detalles en rojo",
+        "precio": 4000
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "S3 SPORTBACK TFSI",
+    "precio": 25000,
+    "colores": [
+      {
+        "id": 0,
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/1.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/1.webp",
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/1.webp",
+        "nombre": "Blanco",
+        "precio": 1000
+      },
+      {
+        "id": 1,
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/2.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/2.webp",
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/2.webp",
+        "nombre": "Gris",
+        "precio": 2000
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/3.webp",
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/3.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/3.webp",
+        "nombre": "Negro",
+        "precio": 3000
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/4.webp",
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/4.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/4.webp",
+        "nombre": "Azul",
+        "precio": 4000
+      },
+      {
+        "id": 4,
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/5.webp",
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/5.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/5.webp",
+        "nombre": "Amarillo",
+        "precio": 5000
+      },
+      {
+        "id": 5,
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/6.webp",
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/6.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/6.webp",
+        "nombre": "Rojo",
+        "precio": 90000
+      },
+      {
+        "id": 6,
+        "imgA": "../media/cars/s3_sportback_tfsi/colores/7.webp",
+        "imgB": "../media/cars/s3_sportback_tfsi/perfil/7.webp",
+        "imgC": "../media/cars/s3_sportback_tfsi/frente/7.webp",
+        "nombre": "Violeta",
+        "precio": 12000
+      }
+    ],
+
+    "interiores": [
+      {
+        "id": 0,
+        "imgA": "../media/cars/s3_sportback_tfsi/interior/A.webp",
+        "nombre": "Deportivo negro",
+        "precio": 1000
+      },
+      {
+        "id": 1,
+        "imgA": "../media/cars/s3_sportback_tfsi/interior/B.webp",
+        "nombre": "Clásico negro",
+        "precio": 1200
+      },
+      {
+        "id": 2,
+        "imgA": "../media/cars/s3_sportback_tfsi/interior/C.webp",
+        "nombre": "Clásico bi-tono con detalles en rojo",
+        "precio": 1500
+      },
+      {
+        "id": 3,
+        "imgA": "../media/cars/s3_sportback_tfsi/interior/D.webp",
+        "nombre": "Clásico bi-tono liso",
+        "precio": 2000
+      }
+    ]
+  }
 ]

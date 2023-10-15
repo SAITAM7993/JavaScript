@@ -63,7 +63,6 @@ console.log(false || "falsy"); //falsy
 console.log(0 || "falsy");  //falsy
 
 //ejemplo
-
 const usuario3 = {
     edad: 12,
     nombre: "juan",
